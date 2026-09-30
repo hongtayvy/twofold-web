@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Machine-local Claude Code settings
+.claude/settings.local.json
+
+# A copy of the taste-skill, which is its own repo with its own licence.
+# Vendoring it into a public repo would republish someone else's work.
+.claude/skills/
+
+# Brand pipeline
+brand/node_modules/
+# Generated icon set: rebuild with `node build.mjs twofold`. The pages carry an
+# inline SVG favicon, so nothing at runtime depends on these files.
+brand/dist/

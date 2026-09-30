@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TwoFold. Two incomes, one plan.</title>
+<meta name="description" content="TwoFold puts both of your accounts in one calm place, so money stays a conversation, not a chore.">
+
+<!-- Design read: consumer fintech landing for couples, calm/minimalist language,
+     native CSS + Tailwind utilities, Instrument Sans body + Gabarito display
+     (rounded-geometric pairing in the Round 8 spirit), restrained motion.
+     Dials: DESIGN_VARIANCE 5 / MOTION_INTENSITY 3 / VISUAL_DENSITY 2.
+     Theme locked light (calm pastel jade reads best on paper; flagged to user).
+     All product-preview numbers are sample data. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#F8FAF8',
+          ink: '#17251E',
+          mute: '#57655C',
+          jade: {
+            50: '#EFF7F2',
+            100: '#DFEFE6',
+            200: '#C2E2D0',
+            300: '#A2D2BA',
+            400: '#7CBC9E',
+            500: '#55A183',
+            600: '#3B8168',
+            700: '#2E6552',
+            900: '#122B21',
+          },
+        },
+        fontFamily: {
+          display: ['Gabarito', '"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          body: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F8FAF8; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .btn-press:active { transform: translateY(1px) scale(0.98); }
+  details.faq summary { cursor: pointer; list-style: none; }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq .faq-icon { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+  details.faq[open] .faq-icon { transform: rotate(45deg); }
+
+  /* Landscape phone: keep the primary CTA above the fold. Portrait untouched. */
+  @media (max-height: 520px) and (orientation: landscape) {
+    header#top { padding-top: .75rem !important; padding-bottom: 1.5rem !important; }
+    header#top h1 { font-size: 1.75rem !important; line-height: 1.1 !important; }
+    header#top h1 + p { margin-top: .6rem !important; font-size: 1rem !important; }
+    header#top h1 ~ div { margin-top: .85rem !important; }
+  }
+</style>
+</head>
+<body class="font-body text-ink bg-paper antialiased">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-jade-100">
+  <div class="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
+    <a href="#top" class="font-display font-bold text-xl tracking-tight text-ink">TwoFold</a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-mute">
+      <a href="#shared-view" class="hover:text-ink transition-colors">Shared view</a>
+      <a href="#budgets" class="hover:text-ink transition-colors">Budgets</a>
+      <a href="#goals" class="hover:text-ink transition-colors">Goals</a>
+      <a href="#pricing" class="hover:text-ink transition-colors">Pricing</a>
+      <a href="#security" class="hover:text-ink transition-colors">Security</a>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href="#" class="hidden md:inline text-sm text-mute hover:text-ink transition-colors">Log in</a>
+      <a href="#final-cta" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white text-sm font-medium px-4 sm:px-5 py-2.5 hover:bg-jade-700 transition-colors">Get started</a>
+      <button id="navToggle" type="button"
+              class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-jade-100 text-ink hover:bg-jade-50 transition-colors"
+              aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <i id="navToggleIcon" class="ph ph-list text-xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileNav" class="hidden md:hidden border-t border-jade-100 bg-paper">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex flex-col divide-y divide-jade-100">
+      <a href="#shared-view" class="py-3 text-ink hover:text-jade-700 transition-colors">Shared view</a>
+      <a href="#budgets" class="py-3 text-ink hover:text-jade-700 transition-colors">Budgets</a>
+      <a href="#goals" class="py-3 text-ink hover:text-jade-700 transition-colors">Goals</a>
+      <a href="#pricing" class="py-3 text-ink hover:text-jade-700 transition-colors">Pricing</a>
+      <a href="#security" class="py-3 text-ink hover:text-jade-700 transition-colors">Security</a>
+      <a href="#" class="py-3 text-ink hover:text-jade-700 transition-colors">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO : asymmetric split, copy left / live product preview right -->
+<header id="top" class="max-w-7xl mx-auto px-6 pt-10 sm:pt-14 md:pt-20 pb-12 sm:pb-20 md:pb-28">
+  <div class="grid md:grid-cols-[1.1fr_1fr] gap-8 sm:gap-12 md:gap-16 items-center">
+    <div class="reveal">
+      <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink">
+        Two incomes.<br>One plan.
+      </h1>
+      <p class="mt-6 text-base md:text-lg text-mute leading-relaxed max-w-[40ch]">
+        TwoFold puts both of your accounts in one calm place, so money stays a conversation, not a chore.
+      </p>
+      <!-- Secondary is a text link below sm. Two stacked buttons cost fold space. -->
+      <div class="mt-7 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-5 sm:gap-4">
+        <a href="#final-cta" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white font-medium px-7 py-3.5 hover:bg-jade-700 transition-colors">Get started</a>
+        <a href="#shared-view" class="btn-press inline-flex items-center gap-2 font-medium text-ink transition-colors sm:rounded-full sm:border sm:border-jade-200 sm:px-7 sm:py-3.5 sm:hover:bg-jade-50">
+          See how it works<i class="ph ph-arrow-right sm:hidden text-jade-600"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Real component preview: the shared month card. Sample data. -->
+    <div class="reveal" style="transition-delay:120ms">
+      <div class="rounded-3xl bg-white border border-jade-100 shadow-[0_24px_60px_-30px_rgba(18,43,33,0.25)] p-7 md:p-8 max-w-md md:ml-auto">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <span class="text-sm text-mute">June</span>
+        </div>
+        <p class="mt-3 font-display font-semibold text-4xl tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend this month</p>
+
+        <div class="mt-5 flex items-center gap-2">
+          <span class="inline-flex items-center gap-2 rounded-full bg-jade-50 border border-jade-100 pl-1 pr-3 py-1 text-sm">
+            <span class="w-6 h-6 rounded-full bg-jade-200 text-jade-900 text-xs font-semibold flex items-center justify-center">M</span>
+            Maya
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-jade-50 border border-jade-100 pl-1 pr-3 py-1 text-sm">
+            <span class="w-6 h-6 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center">J</span>
+            Jon
+          </span>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-jade-100 space-y-4 text-sm">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-jade-200 text-jade-900 text-[10px] font-semibold flex items-center justify-center">M</span>
+              <span>Trader Joe's</span>
+              <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Groceries</span>
+            </div>
+            <span class="text-mute">-$84.20</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-jade-600 text-white text-[10px] font-semibold flex items-center justify-center">J</span>
+              <span>Osteria Nella</span>
+              <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Date night</span>
+            </div>
+            <span class="text-mute">-$62.40</span>
+          </div>
+          <!-- Third row is trimmed below sm to keep the hero inside the fold. -->
+          <div class="hidden sm:flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-jade-100 text-jade-900 text-[10px] font-semibold flex items-center justify-center"><i class="ph ph-users"></i></span>
+              <span>Rent</span>
+              <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Home</span>
+            </div>
+            <span class="text-mute">-$1,650</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SHARED VIEW : stacked headline + wide panel -->
+<section id="shared-view" class="border-t border-jade-100">
+  <div class="max-w-7xl mx-auto px-6 py-16 sm:py-20 md:py-28">
+    <div class="max-w-[58ch] reveal">
+      <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">See everything, both of you.</h2>
+      <p class="mt-5 text-base md:text-lg text-mute leading-relaxed">
+        Link your accounts and your partner's. One view shows what's coming in, going out, and left over. No spreadsheets, no separate logins, no keeping score.
+      </p>
+    </div>
+
+    <!-- Real component preview: joint account overview. Sample data. -->
+    <div class="mt-12 reveal rounded-3xl bg-white border border-jade-100 p-6 md:p-10" style="transition-delay:100ms">
+      <div class="grid md:grid-cols-[1.3fr_1fr] gap-8 md:gap-12">
+        <div>
+          <p class="text-sm text-mute mb-4">All accounts</p>
+          <ul class="space-y-1">
+            <li class="flex items-center justify-between rounded-2xl px-4 py-3.5 hover:bg-jade-50 transition-colors">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-jade-200 text-jade-900 text-xs font-semibold flex items-center justify-center">M</span>
+                <div><p class="text-sm font-medium">Maya's checking</p><p class="text-xs text-mute">Chase</p></div>
+              </div>
+              <span class="font-medium text-sm">$3,482.11</span>
+            </li>
+            <li class="flex items-center justify-between rounded-2xl px-4 py-3.5 hover:bg-jade-50 transition-colors">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center">J</span>
+                <div><p class="text-sm font-medium">Jon's checking</p><p class="text-xs text-mute">Ally</p></div>
+              </div>
+              <span class="font-medium text-sm">$2,957.63</span>
+            </li>
+            <li class="flex items-center justify-between rounded-2xl bg-jade-50 px-4 py-3.5">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-jade-100 text-jade-700 flex items-center justify-center"><i class="ph ph-users"></i></span>
+                <div><p class="text-sm font-medium">Joint savings</p><p class="text-xs text-mute">Capital One</p></div>
+              </div>
+              <span class="font-medium text-sm">$18,204.90</span>
+            </li>
+            <li class="flex items-center justify-between rounded-2xl px-4 py-3.5 hover:bg-jade-50 transition-colors">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-jade-100 text-jade-700 flex items-center justify-center"><i class="ph ph-credit-card"></i></span>
+                <div><p class="text-sm font-medium">Shared credit card</p><p class="text-xs text-mute">Amex</p></div>
+              </div>
+              <span class="font-medium text-sm text-mute">-$736.28</span>
+            </li>
+          </ul>
+        </div>
+        <div class="md:border-l md:border-jade-100 md:pl-12 flex flex-col justify-center">
+          <p class="text-sm text-mute">This month, together</p>
+          <dl class="mt-5 space-y-5">
+            <div class="flex items-baseline justify-between gap-6">
+              <dt class="text-sm text-mute">Came in</dt>
+              <dd class="font-display font-semibold text-2xl tracking-tight">$9,340</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6">
+              <dt class="text-sm text-mute">Went out</dt>
+              <dd class="font-display font-semibold text-2xl tracking-tight">$5,122</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6 pt-5 border-t border-jade-100">
+              <dt class="text-sm text-mute">Left over</dt>
+              <dd class="font-display font-semibold text-2xl tracking-tight text-jade-600">$4,218</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTO TRACKING : split, text left / component right -->
+<section class="max-w-7xl mx-auto px-6 py-14 sm:py-20 md:py-28">
+  <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <div class="reveal">
+      <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">Your transactions sort themselves.</h2>
+      <p class="mt-5 text-base md:text-lg text-mute leading-relaxed max-w-[42ch]">
+        Every purchase lands in the right category on its own. Rename things if you like, or never touch it at all.
+      </p>
+    </div>
+    <!-- Sample data. -->
+    <div class="reveal rounded-3xl bg-white border border-jade-100 p-6 md:p-8" style="transition-delay:100ms">
+      <ul class="space-y-4 text-sm">
+        <li class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-2xl bg-jade-50 text-jade-700 flex items-center justify-center"><i class="ph ph-shopping-cart"></i></span>
+            <div><p class="font-medium">Whole Foods</p><p class="text-xs text-mute">Yesterday</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Groceries</span>
+            <span class="text-mute">-$61.87</span>
+          </div>
+        </li>
+        <li class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-2xl bg-jade-50 text-jade-700 flex items-center justify-center"><i class="ph ph-coffee"></i></span>
+            <div><p class="font-medium">Blue Bottle</p><p class="text-xs text-mute">Yesterday</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Coffee</span>
+            <span class="text-mute">-$7.25</span>
+          </div>
+        </li>
+        <li class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-2xl bg-jade-50 text-jade-700 flex items-center justify-center"><i class="ph ph-lightning"></i></span>
+            <div><p class="font-medium">City Power &amp; Light</p><p class="text-xs text-mute">Monday</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Utilities</span>
+            <span class="text-mute">-$112.40</span>
+          </div>
+        </li>
+        <li class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-2xl bg-jade-50 text-jade-700 flex items-center justify-center"><i class="ph ph-film-slate"></i></span>
+            <div><p class="font-medium">Regal Cinemas</p><p class="text-xs text-mute">Sunday</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="rounded-full bg-jade-50 text-jade-700 px-2.5 py-0.5 text-xs">Date night</span>
+            <span class="text-mute">-$34.00</span>
+          </div>
+        </li>
+      </ul>
+      <p class="mt-6 pt-5 border-t border-jade-100 text-xs text-mute flex items-center gap-2">
+        <i class="ph ph-sparkle text-jade-500"></i> Categorized automatically
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FLEXIBLE BUDGETS : split flipped, component left / text right -->
+<section id="budgets" class="max-w-7xl mx-auto px-6 py-14 sm:py-20 md:py-28">
+  <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <!-- Sample data. -->
+    <div class="reveal order-2 md:order-1 rounded-3xl bg-white border border-jade-100 p-6 md:p-8">
+      <div class="flex items-center justify-between text-sm">
+        <span class="font-medium">June budget</span>
+        <span class="text-mute">12 days left</span>
+      </div>
+      <ul class="mt-6 space-y-6">
+        <li>
+          <div class="flex items-center justify-between text-sm mb-2">
+            <span>Groceries</span><span class="text-mute">$418 of $520</span>
+          </div>
+          <div class="h-2 rounded-full bg-jade-50"><div class="h-2 rounded-full bg-jade-400" style="width:80%"></div></div>
+        </li>
+        <li>
+          <div class="flex items-center justify-between text-sm mb-2">
+            <span>Eating out</span><span class="text-mute">$176 of $240</span>
+          </div>
+          <div class="h-2 rounded-full bg-jade-50"><div class="h-2 rounded-full bg-jade-400" style="width:73%"></div></div>
+        </li>
+        <li>
+          <div class="flex items-center justify-between text-sm mb-2">
+            <span>Fun money</span><span class="text-mute">$92 of $150</span>
+          </div>
+          <div class="h-2 rounded-full bg-jade-50"><div class="h-2 rounded-full bg-jade-400" style="width:61%"></div></div>
+        </li>
+      </ul>
+      <p class="mt-7 rounded-2xl bg-jade-50 px-4 py-3 text-sm text-jade-700 flex items-center gap-2">
+        <i class="ph ph-arrow-bend-down-right"></i> $58 unspent in May rolled into June
+      </p>
+    </div>
+    <div class="reveal order-1 md:order-2">
+      <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">Budgets that bend, not break.</h2>
+      <p class="mt-5 text-base md:text-lg text-mute leading-relaxed max-w-[42ch]">
+        Didn't spend it all? It rolls into next month. Went over on takeout? Nobody gets a lecture. Adjust together whenever life changes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS : asymmetric grid, image cell + 4 goal cards. Sample data. -->
+<section id="goals" class="max-w-7xl mx-auto px-6 py-16 sm:py-20 md:py-28">
+  <div class="max-w-[58ch] reveal">
+    <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">Save for the good stuff.</h2>
+    <p class="mt-5 text-base md:text-lg text-mute leading-relaxed">
+      A wedding, a first home, a baby, a trip. Pick a goal, chip in together, watch it grow.
+    </p>
+  </div>
+  <div class="mt-12 grid md:grid-cols-3 gap-5">
+    <!-- TODO: replace with real photography of a couple; picsum is a placeholder -->
+    <div class="reveal md:row-span-2 rounded-3xl overflow-hidden bg-jade-100 min-h-[260px]">
+      <img src="https://picsum.photos/seed/twofold-goals-together/800/1100" alt="Placeholder photo" class="w-full h-full object-cover">
+    </div>
+    <div class="reveal rounded-3xl bg-white border border-jade-100 p-7 flex flex-col justify-between min-h-[170px]" style="transition-delay:60ms">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-semibold text-lg tracking-tight">Wedding</p>
+        <i class="ph ph-champagne text-jade-500 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-sm text-mute mb-2">$8,400 of $15,000</p>
+        <div class="h-2 rounded-full bg-jade-50"><div class="h-2 rounded-full bg-jade-400" style="width:56%"></div></div>
+      </div>
+    </div>
+    <div class="reveal rounded-3xl bg-white border border-jade-100 p-7 flex flex-col justify-between min-h-[170px]" style="transition-delay:120ms">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-semibold text-lg tracking-tight">First home</p>
+        <i class="ph ph-house-line text-jade-500 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-sm text-mute mb-2">$31,200 of $60,000</p>
+        <div class="h-2 rounded-full bg-jade-50"><div class="h-2 rounded-full bg-jade-400" style="width:52%"></div></div>
+      </div>
+    </div>
+    <div class="reveal rounded-3xl bg-white border border-jade-100 p-7 flex flex-col justify-between min-h-[170px]" style="transition-delay:180ms">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-semibold text-lg tracking-tight">Baby fund</p>
+        <i class="ph ph-baby text-jade-500 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-sm text-mute mb-2">$2,150 of $6,000</p>
+        <div class="h-2 rounded-full bg-jade-50"><div class="h-2 rounded-full bg-jade-400" style="width:36%"></div></div>
+      </div>
+    </div>
+    <div class="reveal rounded-3xl bg-jade-900 text-white p-7 flex flex-col justify-between min-h-[170px]" style="transition-delay:240ms">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-semibold text-lg tracking-tight">Japan trip</p>
+        <i class="ph ph-airplane-tilt text-jade-300 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-sm text-jade-200 mb-2">$3,940 of $5,500</p>
+        <div class="h-2 rounded-full bg-white/15"><div class="h-2 rounded-full bg-jade-300" style="width:72%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY : contained panel, share account by account -->
+<section id="privacy" class="max-w-7xl mx-auto px-6 pb-14 sm:pb-20 md:pb-28">
+  <div class="reveal rounded-[32px] bg-jade-50 border border-jade-100 p-8 md:p-12">
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">Share what's ours. Keep what's yours.</h2>
+        <p class="mt-5 text-base md:text-lg text-mute leading-relaxed max-w-[42ch]">
+          You choose, account by account. Shared ones show up for both of you. Private ones stay private, so birthday surprises stay surprises.
+        </p>
+      </div>
+      <!-- Sample data. -->
+      <div class="rounded-3xl bg-white border border-jade-100 p-5 md:p-6">
+        <ul class="space-y-1 text-sm">
+          <li class="flex items-center justify-between rounded-2xl px-4 py-3.5">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-jade-100 text-jade-700 flex items-center justify-center"><i class="ph ph-users"></i></span>
+              <div><p class="font-medium">Joint savings</p><p class="text-xs text-mute">Both of you</p></div>
+            </div>
+            <span class="flex items-center gap-2 text-xs text-jade-700">Shared
+              <span class="relative inline-block w-9 h-5 rounded-full bg-jade-500"><span class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-white"></span></span>
+            </span>
+          </li>
+          <li class="flex items-center justify-between rounded-2xl px-4 py-3.5">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-jade-200 text-jade-900 text-xs font-semibold flex items-center justify-center">M</span>
+              <div><p class="font-medium">Maya's checking</p><p class="text-xs text-mute">Chase</p></div>
+            </div>
+            <span class="flex items-center gap-2 text-xs text-jade-700">Shared
+              <span class="relative inline-block w-9 h-5 rounded-full bg-jade-500"><span class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-white"></span></span>
+            </span>
+          </li>
+          <li class="flex items-center justify-between rounded-2xl px-4 py-3.5">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center">J</span>
+              <div><p class="font-medium">Jon's surprise fund</p><p class="text-xs text-mute">Ally</p></div>
+            </div>
+            <span class="flex items-center gap-2 text-xs text-mute">Private
+              <span class="relative inline-block w-9 h-5 rounded-full bg-jade-200"><span class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white"></span></span>
+            </span>
+          </li>
+        </ul>
+        <p class="mt-4 pt-4 border-t border-jade-100 text-xs text-mute">Private accounts never show up for your partner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY : plain statement band -->
+<section id="security" class="border-y border-jade-100 bg-jade-50/60">
+  <div class="max-w-7xl mx-auto px-6 py-10 sm:py-16 md:py-24">
+    <div class="max-w-[56ch] reveal">
+      <i class="ph ph-lock-key text-jade-600 text-3xl"></i>
+      <h2 class="mt-5 font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">Your money stays yours.</h2>
+      <p class="mt-5 text-base md:text-lg text-mute leading-relaxed">
+        TwoFold connects to your banks with read-only, bank-level encryption. We can't move your money, and we never sell your data.
+      </p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="reveal">
+        <i class="ph ph-plugs-connected text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">Connected through Plaid</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">The same secure link most major banks use.</p>
+      </div>
+      <div class="reveal" style="transition-delay:60ms">
+        <i class="ph ph-hand-palm text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">Read-only by design</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">We can see transactions. We can't move a cent.</p>
+      </div>
+      <div class="reveal" style="transition-delay:120ms">
+        <i class="ph ph-shield-check text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">256-bit encryption</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">Your bank login is never stored with us.</p>
+      </div>
+      <div class="reveal" style="transition-delay:180ms">
+        <i class="ph ph-receipt text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">No ads, no data sales</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">Subscriptions keep the lights on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING : single centered card. Sample pricing. -->
+<section id="pricing" class="max-w-7xl mx-auto px-6 py-14 sm:py-20 md:py-28">
+  <div class="max-w-md mx-auto reveal">
+    <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-center">One price, two of you.</h2>
+    <div class="mt-10 rounded-[32px] bg-white border border-jade-200 p-8 md:p-10">
+      <div class="flex items-end gap-2">
+        <span class="font-display font-bold text-5xl tracking-tight">$9</span>
+        <span class="text-mute pb-1.5">/ month, billed yearly</span>
+      </div>
+      <ul class="mt-7 space-y-3 text-sm">
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Both partners included</li>
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Unlimited linked accounts</li>
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Every feature, no tiers</li>
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Cancel anytime</li>
+      </ul>
+      <a href="#final-cta" class="btn-press mt-8 w-full inline-flex justify-center rounded-full bg-jade-600 text-white font-medium px-7 py-3.5 hover:bg-jade-700 transition-colors">Get started</a>
+      <p class="mt-4 text-center text-xs text-mute">Free for 30 days. No card up front.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES : simple 2-col -->
+<section class="max-w-7xl mx-auto px-6 py-10 sm:py-16 md:py-28">
+  <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+    <blockquote class="reveal">
+      <p class="font-display text-xl md:text-2xl leading-snug text-ink">
+        "We used to argue about money once a month, like clockwork. Now we open TwoFold on Sunday and it takes five minutes."
+      </p>
+      <footer class="mt-5 text-sm text-mute">Priya &amp; Marcus, together 6 years</footer>
+    </blockquote>
+    <blockquote class="reveal" style="transition-delay:100ms">
+      <p class="font-display text-xl md:text-2xl leading-snug text-ink">
+        "I finally know what's in our joint account without texting my husband to check."
+      </p>
+      <footer class="mt-5 text-sm text-mute">Elena R., married 2 years</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- FAQ : accordion -->
+<section id="faq" class="max-w-7xl mx-auto px-6 pb-14 sm:pb-20 md:pb-28">
+  <div class="max-w-2xl reveal">
+    <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Fair questions.</h2>
+    <div class="mt-8 divide-y divide-jade-100 border-t border-jade-100">
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-medium">Do we both get our own login?<i class="ph ph-plus faq-icon text-jade-600 shrink-0"></i></summary>
+        <p class="mt-3 text-mute leading-relaxed">Yes. One subscription, two logins. You each connect your own banks and see the same shared picture.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-medium">What if we keep some money separate?<i class="ph ph-plus faq-icon text-jade-600 shrink-0"></i></summary>
+        <p class="mt-3 text-mute leading-relaxed">Most couples do. You share accounts one at a time, and anything marked private never shows up for your partner.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-medium">What if one of us hates money stuff?<i class="ph ph-plus faq-icon text-jade-600 shrink-0"></i></summary>
+        <p class="mt-3 text-mute leading-relaxed">That's fine. One of you can fuss over the details while the other just reads the five-minute Sunday summary. Same picture, either way.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-medium">What happens if we split up?<i class="ph ph-plus faq-icon text-jade-600 shrink-0"></i></summary>
+        <p class="mt-3 text-mute leading-relaxed">Either of you can unlink your accounts at any time and take your data with you. Ask us to delete something and we delete it.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-medium">Can TwoFold move our money?<i class="ph ph-plus faq-icon text-jade-600 shrink-0"></i></summary>
+        <p class="mt-3 text-mute leading-relaxed">No. Connections are read-only. We can show you what's happening, but we can't touch it.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="final-cta" class="max-w-7xl mx-auto px-6 pb-14 sm:pb-20 md:pb-24">
+  <div class="reveal rounded-[32px] bg-jade-600 text-white text-center px-8 py-16 md:py-20">
+    <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Start planning together.</h2>
+    <p class="mt-4 text-jade-50/90 text-lg">Free for 30 days. Cancel anytime.</p>
+    <a href="#" class="btn-press mt-8 inline-flex items-center rounded-full bg-white text-jade-700 font-medium px-8 py-3.5 hover:bg-jade-50 transition-colors">Get started</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-jade-100">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <span class="font-display font-bold text-ink">TwoFold</span>
+    <div class="flex items-center gap-6 text-sm text-mute">
+      <a href="#shared-view" class="hover:text-ink transition-colors">Shared view</a>
+      <a href="#budgets" class="hover:text-ink transition-colors">Budgets</a>
+      <a href="#pricing" class="hover:text-ink transition-colors">Pricing</a>
+      <a href="#faq" class="hover:text-ink transition-colors">FAQ</a>
+      <a href="#" class="hover:text-ink transition-colors">Log in</a>
+    </div>
+    <span class="text-sm text-mute">© 2026 TwoFold. Made for two.</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav. Same pattern across all concepts so behaviour is consistent.
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var panel = document.getElementById('mobileNav');
+    var icon = document.getElementById('navToggleIcon');
+    if (!btn || !panel) return;
+    function setOpen(open) {
+      panel.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      icon.className = open ? 'ph ph-x text-xl' : 'ph ph-list text-xl';
+    }
+    btn.addEventListener('click', function () { setOpen(panel.classList.contains('hidden')); });
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.classList.contains('hidden')) { setOpen(false); btn.focus(); }
+    });
+  })();
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if (reduceMotion) {
+    items.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+</script>
+</body>
+</html>

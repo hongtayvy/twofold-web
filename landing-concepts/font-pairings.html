@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TwoFold. Six pairings.</title>
+<meta name="description" content="Each of the six calm typefaces given a companion, shown on the real TwoFold hero and product card.">
+
+<!--
+  Follow-up to font-options.html, which showed each face working alone.
+  Here each of the six gets a partner.
+
+  Rule used for every pairing: ONE of the two is the calm anchor from the last
+  round, and the partner supplies contrast without raising the temperature.
+  Three are sans + sans, three are sans + serif, so the range is real rather
+  than six variations on one idea.
+
+  Same hero copy and product card throughout, so the only variable is type.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=DM+Serif+Display&family=Lexend:wght@400..700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Rubik:wght@400..700&family=Karla:wght@400..700&family=Work+Sans:wght@400..700&family=Newsreader:opsz,wght@6..72,400..700&family=Figtree:wght@400..800&family=Hanken+Grotesk:wght@400..700&family=Nunito+Sans:opsz,wght@6..12,400..800&family=Bitter:wght@400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: {
+      paper:'#FAFAF7', ink:'#18211C', mute:'#5C6862', line:'#E5E9E4',
+      jade:{50:'#EFF7F2',100:'#DEEFE5',200:'#C2E2D0',400:'#7CBC9E',500:'#55A183',600:'#3B8168',700:'#2E6552'},
+      apricot:{50:'#FDF4EC',100:'#FAE7D6',200:'#F3CFB1',400:'#E3A377',500:'#CE8352',600:'#A96536',700:'#88512C'},
+    },
+  } } };
+</script>
+<style>
+  body { background:#FAFAF7; font-family:'Hanken Grotesk',system-ui,sans-serif; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Each pairing sets a body family on the section and a display family on .hd */
+  .p1        { font-family:'DM Sans',system-ui,sans-serif; }
+  .p1 .hd    { font-family:'DM Serif Display',Georgia,serif; font-weight:400; }
+  .p2        { font-family:'Lexend',system-ui,sans-serif; }
+  .p2 .hd    { font-family:'Bricolage Grotesque',system-ui,sans-serif; }
+  .p3        { font-family:'Karla',system-ui,sans-serif; }
+  .p3 .hd    { font-family:'Rubik',system-ui,sans-serif; }
+  .p4        { font-family:'Work Sans',system-ui,sans-serif; }
+  .p4 .hd    { font-family:'Newsreader',Georgia,serif; font-weight:500; }
+  .p5        { font-family:'Hanken Grotesk',system-ui,sans-serif; }
+  .p5 .hd    { font-family:'Figtree',system-ui,sans-serif; }
+  .p6        { font-family:'Nunito Sans',system-ui,sans-serif; }
+  .p6 .hd    { font-family:'Bitter',Georgia,serif; }
+
+  /* DM Mono ships 400/500 only. Capping weight stops the browser faking a bold. */
+  body.mono-figs .fig { font-family:'DM Mono',ui-monospace,monospace; letter-spacing:-0.02em; font-weight:500 !important; font-synthesis-weight:none; }
+</style>
+</head>
+<body class="text-ink bg-paper antialiased">
+
+<header class="max-w-5xl mx-auto px-6 pt-16 pb-10">
+  <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.05]">Six pairings.</h1>
+  <p class="mt-6 text-lg text-mute leading-relaxed max-w-[60ch]">
+    Each calm face from the last round, now with a partner. In every pair the anchor does the reading and the companion does the talking, which is the only way a pairing stays restful.
+  </p>
+  <label class="mt-8 inline-flex items-center gap-3 rounded-[20px] bg-white border border-line px-5 py-3 cursor-pointer select-none">
+    <input id="monoToggle" type="checkbox" class="w-4 h-4 accent-jade-600">
+    <span class="text-sm">Show money in mono figures</span>
+  </label>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 pb-24 space-y-6">
+
+  <section class="p1 rounded-[20px] bg-white border border-line p-8 md:p-10">
+    <div class="flex items-baseline justify-between gap-6 flex-wrap">
+      <p class="text-xl font-bold tracking-tight">DM Serif Display <span class="text-mute font-normal">+</span> DM Sans</p>
+      <p class="text-sm text-mute">Recommended. One family, two voices.</p>
+    </div>
+    <p class="mt-2 text-mute leading-relaxed max-w-[64ch]">Both faces come from the same superfamily, so the proportions already agree and the pairing cannot clash. The serif brings a letter-from-a-friend warmth to the headline while DM Sans keeps every number plain.</p>
+    <div class="mt-8 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+      <div>
+        <p class="hd text-4xl md:text-5xl tracking-tight leading-[1.08]">The money talk,<br>down to five minutes.</p>
+        <p class="mt-5 text-lg text-mute leading-relaxed max-w-[42ch]">TwoFold watches the week for both of you. Sunday, you two catch up and decide what's next.</p>
+      </div>
+      <div class="rounded-[20px] bg-paper border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+          </div>
+        </div>
+        <p class="mt-3 fig num text-4xl font-bold tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line space-y-3 text-sm">
+          <div class="flex justify-between"><span>Trader Joe's</span><span class="fig num text-mute">-84.20</span></div>
+          <div class="flex justify-between"><span>Joint savings</span><span class="fig num text-mute">18,204.90</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p2 rounded-[20px] bg-white border border-line p-8 md:p-10">
+    <div class="flex items-baseline justify-between gap-6 flex-wrap">
+      <p class="text-xl font-bold tracking-tight">Bricolage Grotesque <span class="text-mute font-normal">+</span> Lexend</p>
+      <p class="text-sm text-mute">Most personality</p>
+    </div>
+    <p class="mt-2 text-mute leading-relaxed max-w-[64ch]">Bricolage has real quirk in its headline weights, and Lexend underneath is the most effortless body text of the six. The contrast is loud face, easy paragraph, which keeps the page interesting without making anyone work.</p>
+    <div class="mt-8 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+      <div>
+        <p class="hd text-4xl md:text-5xl font-bold tracking-tight leading-[1.05]">The money talk,<br>down to five minutes.</p>
+        <p class="mt-5 text-lg text-mute leading-relaxed max-w-[42ch]">TwoFold watches the week for both of you. Sunday, you two catch up and decide what's next.</p>
+      </div>
+      <div class="rounded-[20px] bg-paper border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+          </div>
+        </div>
+        <p class="mt-3 fig num text-4xl font-bold tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line space-y-3 text-sm">
+          <div class="flex justify-between"><span>Trader Joe's</span><span class="fig num text-mute">-84.20</span></div>
+          <div class="flex justify-between"><span>Joint savings</span><span class="fig num text-mute">18,204.90</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p3 rounded-[20px] bg-white border border-line p-8 md:p-10">
+    <div class="flex items-baseline justify-between gap-6 flex-wrap">
+      <p class="text-xl font-bold tracking-tight">Rubik <span class="text-mute font-normal">+</span> Karla</p>
+      <p class="text-sm text-mute">Friendliest, no serif</p>
+    </div>
+    <p class="mt-2 text-mute leading-relaxed max-w-[64ch]">Rubik's rounded corners up top, Karla's slightly odd letterforms underneath. Two faces that both smile a little, which makes this the warmest option that never reaches for a serif.</p>
+    <div class="mt-8 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+      <div>
+        <p class="hd text-4xl md:text-5xl font-bold tracking-tight leading-[1.05]">The money talk,<br>down to five minutes.</p>
+        <p class="mt-5 text-lg text-mute leading-relaxed max-w-[42ch]">TwoFold watches the week for both of you. Sunday, you two catch up and decide what's next.</p>
+      </div>
+      <div class="rounded-[20px] bg-paper border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+          </div>
+        </div>
+        <p class="mt-3 fig num text-4xl font-bold tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line space-y-3 text-sm">
+          <div class="flex justify-between"><span>Trader Joe's</span><span class="fig num text-mute">-84.20</span></div>
+          <div class="flex justify-between"><span>Joint savings</span><span class="fig num text-mute">18,204.90</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p4 rounded-[20px] bg-white border border-line p-8 md:p-10">
+    <div class="flex items-baseline justify-between gap-6 flex-wrap">
+      <p class="text-xl font-bold tracking-tight">Newsreader <span class="text-mute font-normal">+</span> Work Sans</p>
+      <p class="text-sm text-mute">Most human</p>
+    </div>
+    <p class="mt-2 text-mute leading-relaxed max-w-[64ch]">Newsreader was drawn for long reading on screens, so it stays soft at large sizes instead of turning glassy. Against Work Sans it makes the page sound like a person wrote it, which is close to the brief.</p>
+    <div class="mt-8 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+      <div>
+        <p class="hd text-4xl md:text-5xl tracking-tight leading-[1.08]">The money talk,<br>down to five minutes.</p>
+        <p class="mt-5 text-lg text-mute leading-relaxed max-w-[42ch]">TwoFold watches the week for both of you. Sunday, you two catch up and decide what's next.</p>
+      </div>
+      <div class="rounded-[20px] bg-paper border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+          </div>
+        </div>
+        <p class="mt-3 fig num text-4xl font-bold tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line space-y-3 text-sm">
+          <div class="flex justify-between"><span>Trader Joe's</span><span class="fig num text-mute">-84.20</span></div>
+          <div class="flex justify-between"><span>Joint savings</span><span class="fig num text-mute">18,204.90</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p5 rounded-[20px] bg-white border border-line p-8 md:p-10">
+    <div class="flex items-baseline justify-between gap-6 flex-wrap">
+      <p class="text-xl font-bold tracking-tight">Figtree <span class="text-mute font-normal">+</span> Hanken Grotesk</p>
+      <p class="text-sm text-mute">Quietest pairing</p>
+    </div>
+    <p class="mt-2 text-mute leading-relaxed max-w-[64ch]">Soft geometric headlines over a body face built purely for reading. The two are close enough that most people will not consciously notice a change of font, which is exactly the point of a quiet pairing.</p>
+    <div class="mt-8 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+      <div>
+        <p class="hd text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">The money talk,<br>down to five minutes.</p>
+        <p class="mt-5 text-lg text-mute leading-relaxed max-w-[42ch]">TwoFold watches the week for both of you. Sunday, you two catch up and decide what's next.</p>
+      </div>
+      <div class="rounded-[20px] bg-paper border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+          </div>
+        </div>
+        <p class="mt-3 fig num text-4xl font-bold tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line space-y-3 text-sm">
+          <div class="flex justify-between"><span>Trader Joe's</span><span class="fig num text-mute">-84.20</span></div>
+          <div class="flex justify-between"><span>Joint savings</span><span class="fig num text-mute">18,204.90</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p6 rounded-[20px] bg-white border border-line p-8 md:p-10">
+    <div class="flex items-baseline justify-between gap-6 flex-wrap">
+      <p class="text-xl font-bold tracking-tight">Bitter <span class="text-mute font-normal">+</span> Nunito Sans</p>
+      <p class="text-sm text-mute">Warmest, watch the weight</p>
+    </div>
+    <p class="mt-2 text-mute leading-relaxed max-w-[64ch]">A gentle slab against the softest sans here. Cosy and quite distinctive. The caution is that slab headlines carry visual weight, so this pairing gets heavy fast if the headline runs long.</p>
+    <div class="mt-8 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+      <div>
+        <p class="hd text-4xl md:text-5xl font-bold tracking-tight leading-[1.08]">The money talk,<br>down to five minutes.</p>
+        <p class="mt-5 text-lg text-mute leading-relaxed max-w-[42ch]">TwoFold watches the week for both of you. Sunday, you two catch up and decide what's next.</p>
+      </div>
+      <div class="rounded-[20px] bg-paper border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+          </div>
+        </div>
+        <p class="mt-3 fig num text-4xl font-bold tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line space-y-3 text-sm">
+          <div class="flex justify-between"><span>Trader Joe's</span><span class="fig num text-mute">-84.20</span></div>
+          <div class="flex justify-between"><span>Joint savings</span><span class="fig num text-mute">18,204.90</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="border-t border-line bg-white">
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    <h2 class="text-2xl font-bold tracking-tight">If you want the pairing to disappear</h2>
+    <p class="mt-5 text-mute leading-relaxed max-w-[64ch]">
+      The first and fifth are the safest, for opposite reasons. DM Serif Display and DM Sans share a designer and a skeleton, so they agree by construction. Figtree and Hanken Grotesk are simply close cousins. Everything in between trades a little calm for a little character, which is a fair trade as long as you make it on purpose.
+    </p>
+  </div>
+</section>
+
+<script>
+  document.getElementById('monoToggle').addEventListener('change', function (e) {
+    document.body.classList.toggle('mono-figs', e.target.checked);
+  });
+</script>
+</body>
+</html>

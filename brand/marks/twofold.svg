@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6.34 13.81 136.69 136.69" width="128" height="128">
+  <!-- TwoFold mark: the folded "2" from the brand kit (brand/reference/brand-kit.png).
+       Traced by measurement, not by eye: the bowl is two fitted circles (outer r50.1,
+       inner r44.7 centred lower, giving a crescent with a rounded tip); two parallel
+       creases at 36 degrees and a vertical crease at the glyph centre split the ribbon.
+         apricot  #E3A377  bowl, above the upper crease
+         olive    #6E784A  fold, between the creases, right of centre
+         jade-400 #7CBC9E  diagonal, between the creases, left of centre
+         jade-500 #55A183  base, below the lower crease
+       Overlap vs the kit: silhouette 95%, colour regions 88 to 94% (a 125px render,
+       where edge pixels alone cap agreement near 97%). Coordinates are in kit pixels.
+       Square viewBox, so it drops into any square slot. -->
+  <defs><clipPath id="tf-sil"><path d="M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z"/></clipPath></defs>
+  <g clip-path="url(#tf-sil)">
+    <path d="M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z" fill="#55A183"/>
+    <path d="M63.00 76.03 L63.00 118.33 L-60.00 208.74 L-60.00 166.44 Z" fill="#7CBC9E"/>
+    <path d="M62.50 75.90 L220.00 -39.86 L220.00 2.94 L62.50 118.70 Z" fill="#6E784A"/>
+    <path d="M-60.00 166.44 L220.00 -39.36 L220.00 -200.00 L-60.00 -200.00 Z" fill="#E3A377"/>
+  </g>
+</svg>

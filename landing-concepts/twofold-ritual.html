@@ -94,6 +94,11 @@
   /* Week picker. State lives in aria-pressed, so styling and accessibility can't drift apart. */
   .day { background:#FAFAF7; border-color:#E5E9E4; color:#5C6862; cursor:pointer; transition:background-color .2s, border-color .2s, color .2s; }
   .day:hover { border-color:#7CBC9E; }
+  /* On a 360-375px phone seven chips come out 39-42px wide. The hit area reaches 3px
+     into the gap on each side (half of gap-1.5), so every day is a 45px+ target
+     without changing how the strip looks. */
+  .day { position:relative; }
+  .day::after { content:""; position:absolute; inset:0 -3px; }
   .day:focus-visible { outline:2px solid #3B8168; outline-offset:2px; }
   .day[aria-pressed="true"] { background:#3B8168; border-color:#3B8168; color:#FFFFFF; }
   .day[aria-pressed="true"] .day-name { color:#DEEFE5; }
@@ -109,6 +114,8 @@
      consistent so a future edit cannot quietly push the CTA below the fold. */
   @media (max-height: 520px) and (orientation: landscape) {
     header#top { padding-top: 1rem !important; padding-bottom: 1.5rem !important; }
+    /* The big mark is decoration; dropping it is what keeps the button above the fold. */
+    header#top .hero-mark { display: none !important; }
     header#top h1 { font-size: 1.875rem !important; line-height: 1.1 !important; }
     header#top h1 + p { margin-top: .75rem !important; font-size: 1rem !important; }
   }
@@ -142,13 +149,13 @@
       <svg class="w-7 h-7" aria-hidden="true"><use href="#mark"/></svg>
     </a>
     <div class="hidden md:flex items-center gap-8 text-sm text-mute">
-      <a href="#week" class="hover:text-ink transition-colors">How it works</a>
-      <a href="#check-in" class="hover:text-ink transition-colors">Check-in</a>
-      <a href="#goals" class="hover:text-ink transition-colors">Goals</a>
-      <a href="#pricing" class="hover:text-ink transition-colors">Pricing</a>
+      <a href="#week" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">How it works</a>
+      <a href="#check-in" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">Check-in</a>
+      <a href="#goals" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">Goals</a>
+      <a href="#pricing" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">Pricing</a>
     </div>
     <div class="flex items-center gap-2 sm:gap-3">
-      <a href="#" class="hidden md:inline text-sm text-mute hover:text-ink transition-colors">Log in</a>
+      <a href="#" class="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-sm text-mute hover:text-ink transition-colors">Log in</a>
       <a href="#start" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white text-sm font-medium px-4 sm:px-5 py-3 hover:bg-jade-700 transition-colors">Start together</a>
       <!-- Without this, below md only the wordmark and one CTA are reachable and
            Log in disappears entirely, leaving existing customers no way in on a phone. -->
@@ -171,11 +178,14 @@
   </div>
 </nav>
 
-<!-- HERO : centred statement, then a slice of the product. Same order at every width,
-     and the same opening as the coming-soon page. The mark lives in the nav. -->
+<!-- HERO : mark, centred statement, then a slice of the product. Same order at every
+     width, and the same opening as the coming-soon page (same mark sizes). -->
 <header id="top" class="max-w-6xl mx-auto px-6 pt-10 sm:pt-16 md:pt-20 pb-14 sm:pb-20 md:pb-24">
   <div class="flex flex-col items-center text-center gap-10 sm:gap-14">
     <div class="reveal">
+      <div class="hero-mark flex justify-center mb-7">
+        <svg class="w-[88px] h-[88px] sm:w-[104px] sm:h-[104px]" aria-hidden="true"><use href="#mark"/></svg>
+      </div>
       <!-- 32px on mobile is the largest size where "down to five minutes."
            still holds one line at 375px. Bigger and the hero runs to 3 lines. -->
       <h1 class="font-display font-bold text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] tracking-tight leading-[1.05]">
@@ -561,25 +571,25 @@
   <div class="max-w-2xl reveal">
     <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight">Fair questions.</h2>
     <div class="mt-10 divide-y divide-line border-t border-line">
-      <details class="faq py-6">
-        <summary class="flex items-center justify-between gap-4 font-medium text-lg">What if one of us hates money stuff?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
-        <p class="mt-3 text-mute leading-relaxed">Then that person reads the weekly recap and answers one question. That is the entire job. The other one can go as deep as they like.</p>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">What if one of us hates money stuff?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">Then that person reads the weekly recap and answers one question. That is the entire job. The other one can go as deep as they like.</p>
       </details>
-      <details class="faq py-6">
-        <summary class="flex items-center justify-between gap-4 font-medium text-lg">We keep our money mostly separate. Still useful?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
-        <p class="mt-3 text-mute leading-relaxed">Yes, and it is the common case. Share the joint account and the bills, keep the rest private. The shared view only ever holds what you both put in it.</p>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">We keep our money mostly separate. Still useful?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">Yes, and it is the common case. Share the joint account and the bills, keep the rest private. The shared view only ever holds what you both put in it.</p>
       </details>
-      <details class="faq py-6">
-        <summary class="flex items-center justify-between gap-4 font-medium text-lg">Do we both get our own login?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
-        <p class="mt-3 text-mute leading-relaxed">One subscription, two logins. You each connect your own banks, and neither of you needs the other's password for anything.</p>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">Do we both get our own login?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">One subscription, two logins. You each connect your own banks, and neither of you needs the other's password for anything.</p>
       </details>
-      <details class="faq py-6">
-        <summary class="flex items-center justify-between gap-4 font-medium text-lg">What happens if we split up?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
-        <p class="mt-3 text-mute leading-relaxed">Either of you can unlink and leave at any time, with your own data. We will not hold one partner's history hostage to the other's account.</p>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">What happens if we split up?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">Either of you can unlink and leave at any time, with your own data. We will not hold one partner's history hostage to the other's account.</p>
       </details>
-      <details class="faq py-6">
-        <summary class="flex items-center justify-between gap-4 font-medium text-lg">Can TwoFold move our money?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
-        <p class="mt-3 text-mute leading-relaxed">No. Connections are read-only, so we can show you what happened and nothing more.</p>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">Can TwoFold move our money?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">No. Connections are read-only, so we can show you what happened and nothing more.</p>
       </details>
     </div>
   </div>
@@ -605,27 +615,27 @@
       </div>
       <div>
         <p class="text-sm text-white/40 mb-4">Product</p>
-        <ul class="md:space-y-3 text-sm">
-          <li><a href="#week" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">How it works</a></li>
-          <li><a href="#check-in" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Weekly recap</a></li>
-          <li><a href="#goals" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Goals</a></li>
-          <li><a href="#pricing" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Pricing</a></li>
+        <ul class="text-sm">
+          <li><a href="#week" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">How it works</a></li>
+          <li><a href="#check-in" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Weekly recap</a></li>
+          <li><a href="#goals" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Goals</a></li>
+          <li><a href="#pricing" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Pricing</a></li>
         </ul>
       </div>
       <div>
         <p class="text-sm text-white/40 mb-4">Company</p>
-        <ul class="md:space-y-3 text-sm">
-          <li><a href="#" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Security</a></li>
-          <li><a href="#" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Privacy</a></li>
-          <li><a href="#" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Terms</a></li>
+        <ul class="text-sm">
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Security</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Privacy</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Terms</a></li>
         </ul>
       </div>
       <div>
         <p class="text-sm text-white/40 mb-4">Contact</p>
-        <ul class="md:space-y-3 text-sm">
-          <li><a href="mailto:hello@twofold.app" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">hello@twofold.app</a></li>
-          <li><a href="#" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">Instagram</a></li>
-          <li><a href="#" class="inline-flex items-center min-h-[44px] md:min-h-0 text-white/80 hover:text-white transition-colors">X</a></li>
+        <ul class="text-sm">
+          <li><a href="mailto:hello@twofold.app" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">hello@twofold.app</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Instagram</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">X</a></li>
         </ul>
       </div>
     </div>

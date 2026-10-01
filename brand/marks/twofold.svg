@@ -1,20 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6.34 13.81 136.69 136.69" width="128" height="128">
-  <!-- TwoFold mark: the folded "2" from the brand kit (brand/reference/brand-kit.png).
-       Traced by measurement, not by eye: the bowl is two fitted circles (outer r50.1,
-       inner r44.7 centred lower, giving a crescent with a rounded tip); two parallel
-       creases at 36 degrees and a vertical crease at the glyph centre split the ribbon.
-         apricot  #E3A377  bowl, above the upper crease
-         olive    #6E784A  fold, between the creases, right of centre
-         jade-400 #7CBC9E  diagonal, between the creases, left of centre
-         jade-500 #55A183  base, below the lower crease
-       Overlap vs the kit: silhouette 95%, colour regions 88 to 94% (a 125px render,
-       where edge pixels alone cap agreement near 97%). Coordinates are in kit pixels.
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30.19 4.67 354.65 354.65" width="128" height="128">
+  <!-- TwoFold mark: the origami "2" from the brand kit (brand/reference/lockup.webp).
+
+       Traced by measurement, not by eye. One silhouette of 14 straight edges with
+       filleted corners (outer ~9.5-14 lockup px, inner notch corners near-sharp),
+       split into facets by four fitted creases:
+         C1  -87.2 deg  apricot | light facet          (rms 0.16 px)
+         C2  -30.2 deg  light facet | dark band        (rms 0.27 px)
+         C3    0.1 deg  dark band | light base         (rms 0.10 px)
+         C4  -40.6 deg  light base | dark base         (rms 0.24 px)
+       Each facet is the silhouette cut by half-planes, so neighbouring facets share
+       edges exactly and cannot seam. The apricot plane overlaps the light facet by
+       0.4 px so no dark hairline shows along C1.
+
+       Pixel agreement with the source: silhouette 99.7%, apricot 99.5%, dark 98.1%,
+       light 94.9% (the source's anti-aliasing halos count against light).
+
+       Palette only, per the kit: apricot-400 #E3A377, jade-400 #7CBC9E, jade-700 #2E6552.
        Square viewBox, so it drops into any square slot. -->
-  <defs><clipPath id="tf-sil"><path d="M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z"/></clipPath></defs>
+  <defs><clipPath id="tf-sil"><path d="M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z"/></clipPath></defs>
   <g clip-path="url(#tf-sil)">
-    <path d="M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z" fill="#55A183"/>
-    <path d="M63.00 76.03 L63.00 118.33 L-60.00 208.74 L-60.00 166.44 Z" fill="#7CBC9E"/>
-    <path d="M62.50 75.90 L220.00 -39.86 L220.00 2.94 L62.50 118.70 Z" fill="#6E784A"/>
-    <path d="M-60.00 166.44 L220.00 -39.36 L220.00 -200.00 L-60.00 -200.00 Z" fill="#E3A377"/>
+    <path d="M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z" fill="#2E6552"/>
+    <path d="M-100 258.88 L175.18 259.36 L-105.72 500 L-100 500 Z" fill="#7CBC9E"/>
+    <path d="M216.34 -100 L500 -100 L500 -42.86 L205.08 128.99 Z" fill="#7CBC9E"/>
+    <path d="M216.74 -100 L206.41 110.1 L-100 273.24 L-100 -100 Z" fill="#E3A377"/>
   </g>
 </svg>

@@ -15,19 +15,14 @@
 
   Dials: DESIGN_VARIANCE 7 / MOTION_INTENSITY 5 / VISUAL_DENSITY 3.
 
-  TYPE (one superfamily, three strict roles, no exceptions)
-    DM Serif Display  display   warm, human, letter-from-a-friend. SHIPS ONE WEIGHT (400).
-                                Never bold it: the browser fakes a bold and smears the serifs.
-                                Hierarchy comes from size, not weight.
-    DM Sans           body      calm, low contrast, gets out of the way
-    DM Mono           numerals  every money figure, tabular, decimals aligned. 400/500 only.
-                                Treating numbers as designed objects is the fintech craft tell.
+  TYPE (one family, per the brand kit)
+    Inter, weights 300-700, across headlines, UI and body alike.
+    Money figures use Inter with tabular figures so decimals align in columns.
 
   COLOR (two hues, each with a job, never decorative)
     Jade    = Jon      and the single action colour (every button, everywhere)
     Apricot = Maya
-    Overlap = ours (#6E784A). The mark is a folded "2": the olive band is the fold
-              where Maya's apricot bowl crosses Jon's jade diagonal.
+    Overlap = ours (#6E7B4A): shared goals and totals, where both partners' colours meet.
     Apricot never appears on a button. Jade never labels Maya. The colour system IS the product story.
 
   RADIUS: cards 20px, pills full, inputs 12px. One system, no exceptions.
@@ -39,10 +34,10 @@
   All product figures are sample data. Full system: brand/design-system-prompt.md
 -->
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-6.34 13.81 136.69 136.69%22 width=%22128%22 height=%22128%22%3E%3Cdefs%3E%3CclipPath id=%22tf-sil%22%3E%3Cpath d=%22M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z%22/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path=%22url%28%23tf-sil%29%22%3E%3Cpath d=%22M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z%22 fill=%22%2355A183%22/%3E%3Cpath d=%22M63.00 76.03 L63.00 118.33 L-60.00 208.74 L-60.00 166.44 Z%22 fill=%22%237CBC9E%22/%3E%3Cpath d=%22M62.50 75.90 L220.00 -39.86 L220.00 2.94 L62.50 118.70 Z%22 fill=%22%236E784A%22/%3E%3Cpath d=%22M-60.00 166.44 L220.00 -39.36 L220.00 -200.00 L-60.00 -200.00 Z%22 fill=%22%23E3A377%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-30.19 4.67 354.65 354.65%22 width=%22128%22 height=%22128%22%3E%3Cdefs%3E%3CclipPath id=%22tf-sil%22%3E%3Cpath d=%22M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z%22/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path=%22url%28%23tf-sil%29%22%3E%3Cpath d=%22M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z%22 fill=%22%232E6552%22/%3E%3Cpath d=%22M-100 258.88 L175.18 259.36 L-105.72 500 L-100 500 Z%22 fill=%22%237CBC9E%22/%3E%3Cpath d=%22M216.34 -100 L500 -100 L500 -42.86 L205.08 128.99 Z%22 fill=%22%237CBC9E%22/%3E%3Cpath d=%22M216.74 -100 L206.41 110.1 L-100 273.24 L-100 -100 Z%22 fill=%22%23E3A377%22/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -55,13 +50,15 @@
           ink: '#18211C',
           mute: '#5C6862',
           line: '#E5E9E4',
-          jade:    { 50:'#EFF7F2', 100:'#DEEFE5', 200:'#C2E2D0', 400:'#7CBC9E', 500:'#55A183', 600:'#3B8168', 700:'#2E6552', 900:'#122B21', 950:'#0B1F17' },
-          apricot: { 50:'#FDF4EC', 100:'#FAE7D6', 200:'#F3CFB1', 400:'#E3A377', 500:'#CE8352', 600:'#A96536', 700:'#88512C' },
+          field: '#879388',
+          overlap: '#6E7B4A',
+          jade:    { 50:'#EFF7F2', 100:'#DEEFE5', 200:'#C2E2D0', 400:'#7CBC9E', 600:'#3B8168', 700:'#2E6552' },
+          apricot: { 50:'#FDF4EC', 100:'#FAE7D6', 200:'#F3CFB1', 400:'#E3A377', 700:'#88512C' },
         },
         fontFamily: {
-          display: ['"DM Serif Display"', 'Georgia', 'serif'],
-          body: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          num: ['"DM Mono"', 'ui-monospace', 'monospace'],
+          display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          num: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         },
       },
     },
@@ -73,12 +70,6 @@
   body { background: #FAFAF7; }
   .num { font-variant-numeric: tabular-nums; }
 
-  /* DM Serif Display ships ONE weight (400). Every font-bold heading would
-     otherwise get a synthesised fake bold, which smears the serifs badly.
-     Force 400 and switch synthesis off. Hierarchy now comes from size, not weight. */
-  .font-display { font-weight: 400 !important; font-synthesis-weight: none; }
-  /* DM Mono ships 400/500 only. Same guard. */
-  .font-num { font-synthesis-weight: none; }
 
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
@@ -115,18 +106,18 @@
 </head>
 <body class="font-body text-ink bg-paper antialiased">
 
-<!-- BRAND MARK : the folded "2" from the brand kit, traced by measurement.
-     Apricot bowl, olive fold, light-jade diagonal, jade base. Square viewBox, so it
-     drops into any square slot. Source + method: brand/marks/twofold.svg -->
+<!-- BRAND MARK : the origami "2" from the brand kit, traced by measurement.
+     Apricot plane, light-jade facets, dark-jade band and base. Palette colours only.
+     Square viewBox, so it drops into any square slot. Source + method: brand/marks/twofold.svg -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <clipPath id="tf-sil"><path d="M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z"/></clipPath>
-    <symbol id="mark" viewBox="-6.34 13.81 136.69 136.69">
+    <clipPath id="tf-sil"><path d="M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z"/></clipPath>
+    <symbol id="mark" viewBox="-30.19 4.67 354.65 354.65">
       <g clip-path="url(#tf-sil)">
-    <path d="M12.42 71.88 A50.06 50.06 0 1 1 109.65 78.69 A20.0 20.0 0 0 1 102.39 88.88 L62.5 118.20 L105.5 118.20 A6 6 0 0 1 111.5 124.20 L111.5 142.5 A8 8 0 0 1 103.5 150.5 L20.5 150.5 A8 8 0 0 1 12.5 142.5 L12.50 121.25 A16 16 0 0 1 19.02 108.35 L78.23 64.84 A7.0 7.0 0 0 0 75.51 52.35 A44.67 44.67 0 0 0 27.31 74.47 A8.0 8.0 0 0 1 12.42 71.88 Z" fill="#55A183"/>
-    <path d="M63.00 76.03 L63.00 118.33 L-60.00 208.74 L-60.00 166.44 Z" fill="#7CBC9E"/>
-    <path d="M62.50 75.90 L220.00 -39.86 L220.00 2.94 L62.50 118.70 Z" fill="#6E784A"/>
-    <path d="M-60.00 166.44 L220.00 -39.36 L220.00 -200.00 L-60.00 -200.00 Z" fill="#E3A377"/>
+    <path d="M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z" fill="#2E6552"/>
+    <path d="M-100 258.88 L175.18 259.36 L-105.72 500 L-100 500 Z" fill="#7CBC9E"/>
+    <path d="M216.34 -100 L500 -100 L500 -42.86 L205.08 128.99 Z" fill="#7CBC9E"/>
+    <path d="M216.74 -100 L206.41 110.1 L-100 273.24 L-100 -100 Z" fill="#E3A377"/>
   </g>
     </symbol>
   </defs>
@@ -213,7 +204,7 @@
         </div>
         <div class="mt-2 h-2 rounded-full bg-line overflow-hidden flex">
           <span class="h-2 bg-apricot-400" style="width:24%"></span>
-          <span class="h-2 bg-jade-500" style="width:28%"></span>
+          <span class="h-2 bg-jade-400" style="width:28%"></span>
         </div>
       </div>
     </div>
@@ -281,7 +272,7 @@
       </p>
       <div class="mt-8 flex items-center gap-5 text-sm">
         <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-apricot-400"></span>Maya</span>
-        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-jade-500"></span>Jon</span>
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-jade-400"></span>Jon</span>
         <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-ink"></span>Ours</span>
       </div>
     </div>
@@ -298,7 +289,7 @@
         </li>
         <li class="txn flex items-center justify-between" style="--i:1">
           <div class="flex items-center gap-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-jade-500 shrink-0"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-jade-400 shrink-0"></span>
             <div><p class="font-medium">Shell</p><p class="text-xs text-mute">Gas</p></div>
           </div>
           <span class="font-num num text-mute">-41.87</span>
@@ -319,7 +310,7 @@
         </li>
         <li class="txn flex items-center justify-between" style="--i:4">
           <div class="flex items-center gap-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-jade-500 shrink-0"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-jade-400 shrink-0"></span>
             <div><p class="font-medium">Osteria Nella</p><p class="text-xs text-mute">Date night</p></div>
           </div>
           <span class="font-num num text-mute">-62.40</span>
@@ -385,7 +376,7 @@
       </div>
       <div class="mt-2 h-2 rounded-full bg-line overflow-hidden flex">
         <span class="h-2 bg-apricot-400" style="width:24%"></span>
-        <span class="h-2 bg-jade-500" style="width:28%"></span>
+        <span class="h-2 bg-jade-400" style="width:28%"></span>
       </div>
     </div>
   </div>
@@ -411,7 +402,7 @@
 <!-- THREE LANES : privacy, diagrammed rather than described -->
 <section class="border-y border-line bg-white">
   <div class="max-w-6xl mx-auto px-6 py-14 sm:py-20 md:py-28">
-    <div class="max-w-[36ch] reveal">
+    <div class="max-w-[44ch] reveal">
       <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1]">Together is not the same as transparent.</h2>
       <p class="mt-6 text-lg text-mute leading-relaxed">
         You decide what joins the shared view. Everything else stays yours, and your partner never sees a trace of it.
@@ -423,8 +414,8 @@
       <div class="rounded-[20px] border border-apricot-200 bg-apricot-50 p-6">
         <p class="flex items-center gap-2 text-sm font-medium text-apricot-700"><span class="w-2.5 h-2.5 rounded-full bg-apricot-400"></span>Maya's alone</p>
         <ul class="mt-5 space-y-3 text-sm">
-          <li class="flex items-center justify-between"><span>Her checking</span><i class="ph ph-lock-simple text-apricot-600"></i></li>
-          <li class="flex items-center justify-between"><span>Gift fund</span><i class="ph ph-lock-simple text-apricot-600"></i></li>
+          <li class="flex items-center justify-between"><span>Her checking</span><i class="ph ph-lock-simple text-apricot-700"></i></li>
+          <li class="flex items-center justify-between"><span>Gift fund</span><i class="ph ph-lock-simple text-apricot-700"></i></li>
         </ul>
       </div>
       <div class="rounded-[20px] bg-ink text-white p-6 md:p-8">
@@ -437,7 +428,7 @@
         </ul>
       </div>
       <div class="rounded-[20px] border border-jade-200 bg-jade-50 p-6">
-        <p class="flex items-center gap-2 text-sm font-medium text-jade-700"><span class="w-2.5 h-2.5 rounded-full bg-jade-500"></span>Jon's alone</p>
+        <p class="flex items-center gap-2 text-sm font-medium text-jade-700"><span class="w-2.5 h-2.5 rounded-full bg-jade-400"></span>Jon's alone</p>
         <ul class="mt-5 space-y-3 text-sm">
           <li class="flex items-center justify-between"><span>His checking</span><i class="ph ph-lock-simple text-jade-600"></i></li>
           <li class="flex items-center justify-between"><span>Surprise fund</span><i class="ph ph-lock-simple text-jade-600"></i></li>
@@ -467,7 +458,7 @@
       <p class="text-sm text-mute">of 60,000</p>
       <div class="mt-4 h-2 rounded-full bg-line overflow-hidden flex">
         <span class="h-2 bg-apricot-400" style="width:24%"></span>
-        <span class="h-2 bg-jade-500" style="width:28%"></span>
+        <span class="h-2 bg-jade-400" style="width:28%"></span>
       </div>
     </div>
     <div class="rounded-[20px] bg-white border border-line p-7">
@@ -479,7 +470,7 @@
       <p class="text-sm text-mute">of 15,000</p>
       <div class="mt-4 h-2 rounded-full bg-line overflow-hidden flex">
         <span class="h-2 bg-apricot-400" style="width:31%"></span>
-        <span class="h-2 bg-jade-500" style="width:25%"></span>
+        <span class="h-2 bg-jade-400" style="width:25%"></span>
       </div>
     </div>
     <div class="rounded-[20px] bg-ink text-white p-7">

@@ -65,16 +65,17 @@ is never decorative.
 | ink | `#18211C` | text, dark surfaces |
 | mute | `#5C6862` | secondary text (5.6:1 on paper) |
 | line | `#E5E9E4` | hairlines and card borders |
-| field | `#87938B` | form input borders (3.19:1 on white, 3.05:1 on paper) |
+| field | `#879388` | form input and dropdown borders (3.20:1 on white) |
 | jade-400 | `#7CBC9E` | Jon, soft |
 | jade-600 | `#3B8168` | **the only action colour** |
 | jade-700 | `#2E6552` | action hover, jade text |
 | apricot-400 | `#E3A377` | Maya |
 | apricot-700 | `#88512C` | apricot text, error text |
-| overlap | `#6E784A` | where the two partners' colours meet |
+| overlap | `#6E7B4A` | shared goals and totals, where the two partners' colours meet |
 
-Full scales: jade 50 `#EFF7F2`, 100 `#DEEFE5`, 200 `#C2E2D0`, 500 `#55A183`, 900 `#122B21`,
-950 `#0B1F17`. Apricot 50 `#FDF4EC`, 100 `#FAE7D6`, 200 `#F3CFB1`, 500 `#CE8352`, 600 `#A96536`.
+Light tints: jade-50 `#EFF7F2`, jade-100 `#DEEFE5`, jade-200 `#C2E2D0`; apricot-50 `#FDF4EC`,
+apricot-100 `#FAE7D6`, apricot-200 `#F3CFB1`. These are the only shades: the brand kit lists no others.
+
 
 Rules, with the reason for each:
 - **Apricot means Maya, jade means Jon, overlap means ours.** Wherever a partner is
@@ -85,52 +86,50 @@ Rules, with the reason for each:
   clickable.
 - **Never introduce a third hue.** If you think you need one, use a tint of jade or
   apricot. Three accents on a money page reads as a toy.
-- **Errors use apricot-700 plus an icon plus explicit wording.** Never colour alone.
+- **Errors use apricot-700 on apricot-50, plus an icon plus explicit wording.** Never colour alone.
+- **Always pair a partner colour with the partner's name.** Apricot-400 and jade-400 are
+  pastels at about 2.2:1 on white, too faint to carry meaning alone.
 - **Light theme only.** Sections do not invert. One deliberate dark surface (a lane or a
   footer) is fine; alternating light and dark sections is not.
 - Background is paper, never pure white, and text is ink, never pure black.
 
 ## 4. Typography
 
-One superfamily with three strict roles.
-
-| Role | Face | Weights | Use |
-|---|---|---|---|
-| Display | DM Serif Display | **400 only** | headlines, the wordmark |
-| Body | DM Sans | 300 to 700 | everything else |
-| Figures | DM Mono | **400 and 500 only** | every money amount |
+One typeface: **Inter**, weights 300, 400, 500, 600 and 700, across headlines,
+subheadings, body, UI, labels and supporting text.
 
 Rules, with reasons:
-- **Never bold DM Serif Display.** It ships a single weight, so asking for bold makes the
-  browser synthesise a fake one that smears the serifs. Create hierarchy with **size**,
-  not weight. In CSS, pair it with `font-synthesis-weight: none`.
-- **Never set DM Mono above 500**, for the same reason.
-- **Every money figure is DM Mono with `font-variant-numeric: tabular-nums`** so decimals
+- **Every money figure uses Inter with `font-variant-numeric: tabular-nums`** so decimals
   align in columns. Treating numbers as designed objects is what separates a finance
   product from a generic app.
-- Wordmark is "TwoFold": one word, capital T and capital F, in DM Serif Display.
+- **Build hierarchy with weight and size together.** Headlines 600 to 700, body 400,
+  labels 500. One family keeps the page calm; the weight range gives it structure.
+- Wordmark is "TwoFold": one word, capital T and capital F, in Inter.
 - Body copy caps at about 65 characters per line.
 - **Headlines never exceed two lines at any screen width.** If one wraps to three, reduce
-  the size at that breakpoint. Do not shorten good copy to fit.
+  the size or widen its container at that breakpoint. Do not shorten good copy to fit.
+  Note that `ch` measures the parent's font, not the heading's, so a `max-width` in `ch`
+  set on a wrapper can be far narrower than it looks.
 
 ## 5. The mark
 
-A folded numeral "2", which is also the name: two, and a fold. It reads as one ribbon
-creased into a 2, in four flat colours with no gradients and no blend modes:
+An origami numeral "2", which is also the name: two, and a fold. One ribbon folded into
+a 2, in three flat palette colours with no gradients and no blend modes:
 
-- **Bowl**, the top: apricot-400 `#E3A377`. A crescent whose inner curve sits lower
-  than its outer curve, so it tapers to a rounded tip at the lower left.
-- **Fold**, between the creases and right of centre: overlap olive `#6E784A`
-- **Diagonal**, between the creases and left of centre: jade-400 `#7CBC9E`
-- **Base**, below the lower crease: jade-500 `#55A183`
+- **Top plane**: apricot-400 `#E3A377`, with a chamfered top-left corner
+- **Facets** where the ribbon folds over (top right, and the left of the base): jade-400 `#7CBC9E`
+- **Diagonal band and the right of the base**: jade-700 `#2E6552`
 
-The structure is three straight creases: two parallel diagonals at about 36 degrees and
-one vertical crease exactly at the glyph's centre. The olive band is the meaning: the
-point where one partner's colour folds over the other's.
+Four straight creases separate the facets. Outer corners are softly rounded; the inner
+corners of the two notches are close to sharp.
 
-It sits to the left of the "TwoFold" wordmark in DM Serif Display, and must stay
-legible at 32px and on ink `#18211C`. Source: `brand/marks/twofold.svg`, traced from
-`brand/reference/brand-kit.png`. Do not redraw it from a description; use the file.
+Lockups: horizontal (mark left of the wordmark), stacked (mark above), icon only.
+Monochrome: a tonal version mapping the three colours to field `#879388`, mute `#5C6862`
+and ink `#18211C` so the folds stay readable, plus a flat single-colour version.
+Clear space is one corner unit on every side; minimum size is 16px.
+
+Source: `brand/marks/twofold.svg`, traced from `brand/reference/lockup.webp`. Use the
+file. Do not redraw the mark from this description.
 
 ## 6. Shape
 
@@ -224,7 +223,7 @@ are visible in jade-600.
 Check it against this list and fix it before replying:
 1. Zero em or en dashes.
 2. No third hue; jade-600 is the only interactive colour.
-3. No bold DM Serif Display; figures in DM Mono at 500 or below.
+3. Inter only; every money figure uses tabular numerals.
 4. Headlines two lines or fewer at every width.
 5. Spacing varies by section weight.
 6. Copy contains no guilt, grind or empty verbs.

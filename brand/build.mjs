@@ -11,6 +11,7 @@
  *   mark.svg            optimized, via svgo
  *   mark-mono-dark.svg  single ink colour, for light backgrounds
  *   mark-mono-light.svg single white,     for dark backgrounds
+ *   mark-mono-tonal.svg greyscale with the folds kept, as in the brand kit
  *   png/                256, 512, 1024 raster exports
  *   favicon/            full favicon + app icon set + manifest + html snippet
  */
@@ -30,7 +31,7 @@ const INK = "#18211C";
 const PNG_SIZES = [256, 512, 1024];
 
 // Brand colours, so the monochrome pass knows what to collapse.
-const BRAND = ["#E3A377", "#3B8168", "#7CBC9E", "#6E784A", "#55A183"];
+const BRAND = ["#E3A377", "#7CBC9E", "#3B8168", "#2E6552", "#6E7B4A"];
 
 const svgoConfig = {
   multipass: true,
@@ -39,6 +40,16 @@ const svgoConfig = {
     "removeDimensions",
   ],
 };
+
+// Tonal greyscale mapping, sampled from the kit's Monochrome panel and snapped to palette.
+const TONAL = { "#E3A377": "#879388", "#7CBC9E": "#5C6862", "#2E6552": "#18211C" };
+
+/** Swap each colour per a map, case-insensitively. */
+function remap(svg, map) {
+  let out = svg;
+  for (const [from, to] of Object.entries(map)) out = out.replaceAll(from, to).replaceAll(from.toLowerCase(), to);
+  return out;
+}
 
 /** Collapse both brand tones to a single colour for one-colour usage. */
 function monochrome(svg, colour) {
@@ -69,6 +80,12 @@ async function buildMark(name) {
   await writeFile(
     path.join(outDir, "mark-mono-light.svg"),
     optimize(monochrome(raw, "#FFFFFF"), svgoConfig).data,
+  );
+  // Tonal monochrome, as in the brand kit: the folds stay readable in greys.
+  // Mapped onto the palette's own neutrals rather than invented greys.
+  await writeFile(
+    path.join(outDir, "mark-mono-tonal.svg"),
+    optimize(remap(raw, TONAL), svgoConfig).data,
   );
 
   // 3. Raster exports. density keeps small viewBoxes from rendering soft.

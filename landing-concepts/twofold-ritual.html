@@ -170,34 +170,32 @@
   </div>
 </nav>
 
-<!-- HERO : statement left, brand mark right. The mark explains the product before the copy does. -->
+<!-- HERO : centred statement, then a slice of the product. Same order at every width,
+     and the same opening as the coming-soon page. The mark lives in the nav. -->
 <header id="top" class="max-w-6xl mx-auto px-6 pt-10 sm:pt-16 md:pt-20 pb-14 sm:pb-20 md:pb-24">
-  <!-- Split held until lg. At md the two-column split narrows the text column
-       while the type jumps to 52px, which pushes the headline to three lines. -->
-  <div class="grid lg:grid-cols-[1.45fr_1fr] gap-10 sm:gap-14 lg:gap-16 items-center">
+  <div class="flex flex-col items-center text-center gap-10 sm:gap-14">
     <div class="reveal">
       <!-- 32px on mobile is the largest size where "down to five minutes."
            still holds one line at 375px. Bigger and the hero runs to 3 lines. -->
       <h1 class="font-display font-bold text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] tracking-tight leading-[1.05]">
         The money talk,<br>down to five minutes.
       </h1>
-      <p class="mt-7 text-lg md:text-xl text-mute leading-relaxed max-w-[44ch]">
+      <p class="mt-7 text-lg md:text-xl text-mute leading-relaxed max-w-[44ch] mx-auto text-balance">
         TwoFold watches the week for both of you. On the day you pick, you two catch up and decide what's next.
       </p>
       <!-- Below sm the secondary action is a text link rather than a second
            full button. Two stacked buttons cost ~70px of fold and split attention. -->
-      <div class="mt-8 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-5 sm:gap-4">
+      <div class="mt-8 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-5 sm:gap-4">
         <a href="#start" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white font-medium px-8 py-4 hover:bg-jade-700 transition-colors">Start together</a>
         <a href="#check-in" class="btn-press inline-flex items-center gap-2 min-h-[44px] font-medium text-ink transition-colors sm:rounded-full sm:border sm:border-line sm:px-8 sm:py-4 sm:hover:bg-white">
           See a recap<i class="ph ph-arrow-right sm:hidden text-jade-600"></i>
         </a>
       </div>
     </div>
-    <!-- Below lg: a compact slice of the real weekly recap rather than the mark.
-         An abstract logo is decoration; this is the product, and it argues for
-         itself above the fold on the device most people will land on.
-         Sample data. -->
-    <div class="reveal lg:hidden w-full max-w-sm" style="transition-delay:140ms">
+    <!-- A compact slice of the real weekly recap rather than the mark. An abstract
+         logo is decoration; this is the product, and it argues for itself above the
+         fold. Sample data. -->
+    <div class="reveal w-full max-w-sm lg:max-w-md text-left" style="transition-delay:140ms">
       <div class="rounded-[20px] bg-white border border-line p-6">
         <div class="flex items-center justify-between">
           <span class="text-sm text-mute">Our money</span>
@@ -219,10 +217,6 @@
       </div>
     </div>
 
-    <!-- Desktop only. At lg the mark takes the second column. -->
-    <div class="reveal hidden lg:flex lg:justify-end" style="transition-delay:140ms">
-      <svg class="w-[248px] h-[248px]" aria-hidden="true"><use href="#mark"/></svg>
-    </div>
   </div>
 </header>
 

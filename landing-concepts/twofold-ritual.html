@@ -136,9 +136,10 @@
 <!-- NAV -->
 <nav class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-line">
   <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2.5 min-h-[44px]">
-      <svg class="w-6 h-6" aria-hidden="true"><use href="#mark"/></svg>
-      <span class="font-display font-bold text-lg tracking-tight">TwoFold</span>
+    <!-- Mark only. The name is in the hero copy right below, so the nav doesn't repeat it.
+         Up from 24px to 28px now it stands alone; the link keeps a 44px tap area. -->
+    <a href="#top" aria-label="TwoFold, back to top" class="flex items-center justify-center min-h-[44px] min-w-[44px] -ml-2">
+      <svg class="w-7 h-7" aria-hidden="true"><use href="#mark"/></svg>
     </a>
     <div class="hidden md:flex items-center gap-8 text-sm text-mute">
       <a href="#week" class="hover:text-ink transition-colors">How it works</a>

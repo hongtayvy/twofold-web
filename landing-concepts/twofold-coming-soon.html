@@ -84,10 +84,6 @@
      Portrait is untouched. */
   @media (max-height: 520px) and (orientation: landscape) {
     header { padding-top: 1rem !important; padding-bottom: 1.5rem !important; }
-    /* The big mark is decoration and the nav wordmark already carries the brand.
-       Dropping it here is what actually gets the form above the fold. */
-    header > div.rise:first-of-type { display: none !important; }
-    header > p:first-of-type { margin-top: 0 !important; }
     header h1 { font-size: 1.75rem !important; margin-top: .5rem !important; }
     header h1 + p { margin-top: .6rem !important; font-size: 1rem !important; }
     #waitlist { margin-top: 1.1rem !important; }
@@ -116,22 +112,16 @@
 <!-- NAV : brand only. There is nothing to navigate to yet, so no links and no hamburger. -->
 <nav class="border-b border-line">
   <div class="max-w-3xl mx-auto px-6 h-[68px] flex items-center justify-between">
-    <span class="flex items-center gap-2.5">
-      <svg class="w-6 h-6" aria-hidden="true"><use href="#mark"/></svg>
-      <span class="font-display font-bold text-lg tracking-tight">TwoFold</span>
-    </span>
+    <!-- Mark only, as on the ritual page. The name leads the hero copy below. -->
+    <svg class="w-7 h-7" role="img" aria-label="TwoFold"><use href="#mark"/></svg>
     <a href="mailto:hello@twofold.app" class="inline-flex items-center min-h-[44px] text-sm text-mute hover:text-ink transition-colors">Contact</a>
   </div>
 </nav>
 
-<!-- HERO : the whole point of the page. Mark, promise, one field. -->
+<!-- HERO : the whole point of the page. Promise, one field. The mark lives in the nav. -->
 <header class="max-w-3xl mx-auto px-6 pt-12 sm:pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-20 text-center">
-  <div class="rise flex justify-center">
-    <svg class="w-[88px] h-[88px] sm:w-[104px] sm:h-[104px]" aria-hidden="true"><use href="#mark"/></svg>
-  </div>
-
   <!-- A status label is the one legitimate use of an eyebrow: this page IS the status. -->
-  <p class="rise mt-7 text-sm text-jade-700" style="animation-delay:.08s">Opening to the first couples this year</p>
+  <p class="rise text-sm text-jade-700" style="animation-delay:.08s">Opening to the first couples this year</p>
 
   <h1 class="rise mt-4 font-display text-[2rem] sm:text-[2.75rem] md:text-5xl tracking-tight leading-[1.08]" style="animation-delay:.14s">
     The money talk,<br>down to five minutes.

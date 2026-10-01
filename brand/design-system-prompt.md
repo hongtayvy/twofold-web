@@ -19,14 +19,18 @@ Every couples-finance product sells a dashboard. But couples do not fight for la
 dashboard. They fight because there is no calm, recurring, low-stakes moment to talk
 about money.
 
-So TwoFold sells **a ritual, not an interface**: the app quietly tracks the week, and on
-Sunday the couple spends five minutes on a recap that **ends in one shared decision**.
-The product's hero object is the Sunday recap card, never the accounts screen.
+So TwoFold sells **a ritual, not an interface**: the app quietly tracks the week, and once
+a week, **on whichever day the couple picks**, they spend five minutes on a recap that
+**ends in one shared decision**. The product's hero object is the weekly recap card, never
+the accounts screen.
+
+The check-in day is always the couple's choice. Never name a fixed day such as Sunday in
+copy or design: say "once a week", "the day you pick" or "your check-in".
 
 The one-line promise is: **"The money talk, down to five minutes."**
 
 Consequences you should apply everywhere:
-- Organise things around time (the week, the Sunday check-in) before features.
+- Organise things around time (the week, the weekly check-in) before features.
 - Show the product making a decision easy, not the product holding data.
 - The emotional goal is relief. Never urgency, guilt, or performance.
 
@@ -149,7 +153,7 @@ Mobile vertical padding, per side:
 |---|---|---|
 | Compact band | 40px | a single statement, a strip, a trust row |
 | Standard | 56px | an ordinary feature section, pricing, FAQ |
-| Centrepiece | 64px | the Sunday recap, goals, the shared view |
+| Centrepiece | 64px | the weekly recap, goals, the shared view |
 
 Desktop scales these up (roughly 80 to 128px). Aim for padding at no more than about a
 sixth of total page height on mobile.

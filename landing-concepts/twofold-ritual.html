@@ -114,8 +114,6 @@
      consistent so a future edit cannot quietly push the CTA below the fold. */
   @media (max-height: 520px) and (orientation: landscape) {
     header#top { padding-top: 1rem !important; padding-bottom: 1.5rem !important; }
-    /* The big mark is decoration; dropping it is what keeps the button above the fold. */
-    header#top .hero-mark { display: none !important; }
     header#top h1 { font-size: 1.875rem !important; line-height: 1.1 !important; }
     header#top h1 + p { margin-top: .75rem !important; font-size: 1rem !important; }
   }
@@ -178,14 +176,11 @@
   </div>
 </nav>
 
-<!-- HERO : mark, centred statement, then a slice of the product. Same order at every
-     width, and the same opening as the coming-soon page (same mark sizes). -->
+<!-- HERO : centred statement, then a slice of the product. Same order at every width.
+     No big mark here; the nav already carries it. -->
 <header id="top" class="max-w-6xl mx-auto px-6 pt-10 sm:pt-16 md:pt-20 pb-14 sm:pb-20 md:pb-24">
   <div class="flex flex-col items-center text-center gap-10 sm:gap-14">
     <div class="reveal">
-      <div class="hero-mark flex justify-center mb-7">
-        <svg class="w-[88px] h-[88px] sm:w-[104px] sm:h-[104px]" aria-hidden="true"><use href="#mark"/></svg>
-      </div>
       <!-- 32px on mobile is the largest size where "down to five minutes."
            still holds one line at 375px. Bigger and the hero runs to 3 lines. -->
       <h1 class="font-display font-bold text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] tracking-tight leading-[1.05]">

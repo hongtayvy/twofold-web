@@ -4,7 +4,7 @@
  * Takes a candidate mark from ./marks and produces everything you need to
  * actually ship it. Nothing here invents a logo. It refines and exports one.
  *
- *   node build.mjs converge     build a single mark
+ *   node build.mjs twofold      build a single mark
  *   node build.mjs --all        build every mark in ./marks
  *
  * Output lands in ./dist/<mark>/

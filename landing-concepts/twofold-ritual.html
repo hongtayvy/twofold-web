@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TwoFold. The money talk, down to five minutes.</title>
+<meta name="description" content="TwoFold watches the week for both of you. Once a week, on a day you pick, you two catch up in five minutes and decide what's next.">
+
+<!--
+  DESIGN THESIS (this version is the unprompted one)
+  Every couples-finance page sells a dashboard. Couples do not fight for lack of a dashboard,
+  they fight for lack of a calm, recurring moment to talk. So this page is organised as a WEEK,
+  not as a feature list: the app works every day, the couple shows up on one day of their choosing.
+  The product's hero object is the weekly recap, not the account screen.
+
+  Dials: DESIGN_VARIANCE 7 / MOTION_INTENSITY 5 / VISUAL_DENSITY 3.
+
+  TYPE (one family, per the brand kit)
+    Inter, weights 300-700, across headlines, UI and body alike.
+    Money figures use Inter with tabular figures so decimals align in columns.
+
+  COLOR (two hues, each with a job, never decorative)
+    Jade    = Jon      and the single action colour (every button, everywhere)
+    Apricot = Maya
+    Overlap = ours (#6E7B4A): shared goals and totals, where both partners' colours meet.
+    Apricot never appears on a button. Jade never labels Maya. The colour system IS the product story.
+
+  RADIUS: cards 20px, pills full, inputs 12px. One system, no exceptions.
+
+  SPACING (mobile, three tiers by section weight; desktop values larger)
+    compact band 40px  |  standard 56px  |  centrepiece 64px
+    Never one value everywhere. Uniform spacing is the generic tell.
+
+  All product figures are sample data. Full system: brand/design-system-prompt.md
+-->
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-30.19 4.67 354.65 354.65%22 width=%22128%22 height=%22128%22%3E%3Cdefs%3E%3CclipPath id=%22tf-sil%22%3E%3Cpath d=%22M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z%22/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path=%22url%28%23tf-sil%29%22%3E%3Cpath d=%22M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z%22 fill=%22%232E6552%22/%3E%3Cpath d=%22M-100 258.88 L175.18 259.36 L-105.72 500 L-100 500 Z%22 fill=%22%237CBC9E%22/%3E%3Cpath d=%22M216.34 -100 L500 -100 L500 -42.86 L205.08 128.99 Z%22 fill=%22%237CBC9E%22/%3E%3Cpath d=%22M216.74 -100 L206.41 110.1 L-100 273.24 L-100 -100 Z%22 fill=%22%23E3A377%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#FAFAF7',
+          ink: '#18211C',
+          mute: '#5C6862',
+          line: '#E5E9E4',
+          field: '#879388',
+          overlap: '#6E7B4A',
+          jade:    { 50:'#EFF7F2', 100:'#DEEFE5', 200:'#C2E2D0', 400:'#7CBC9E', 600:'#3B8168', 700:'#2E6552' },
+          apricot: { 50:'#FDF4EC', 100:'#FAE7D6', 200:'#F3CFB1', 400:'#E3A377', 700:'#88512C' },
+        },
+        fontFamily: {
+          display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          num: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FAFAF7; }
+  .num { font-variant-numeric: tabular-nums; }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* HERO MOTION. Only runs under #top.play, which the script adds on load unless the
+     visitor has Reduce Motion on. Transforms, opacity, clip-path and one filter only.
+     Sequence: headline 0-0.7s, card unfolds 0.3-1.2s, colours meet 0.85-1.7s. */
+  #top { --t-unfold: 300ms; --t-meet: 850ms; }
+  #top h1 { perspective: 700px; }
+  .fold-line { display: block; transform-origin: 50% 100%; }
+  #top.play .fold-line { animation: lineUp 620ms cubic-bezier(.16,1,.3,1) both; }
+  #top.play .fold-line + .fold-line { animation-delay: 110ms; }
+  #top.play .hero-rise { animation: heroRise 600ms cubic-bezier(.16,1,.3,1) 200ms both; }
+  #top.play .hero-rise + .hero-rise { animation-delay: 280ms; }
+  @keyframes lineUp { from { transform: rotateX(88deg); opacity: 0; } 35% { opacity: 1; } to { transform: none; opacity: 1; } }
+  @keyframes heroRise { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* The card: the real card shows only its bottom half while a clone of the top half
+     (the flap, built by the script, aria-hidden) hinges toward you on the centre crease.
+     At the end the flap hides and the real card is whole, so nothing stays duplicated. */
+  .fold-card { position: relative; perspective: 1300px; }
+  .fold-flap { position: absolute; inset: 0; pointer-events: none; transform-origin: 50% 50%; transform-style: preserve-3d; visibility: hidden; }
+  .fold-flap > .card { height: 100%; clip-path: inset(0 0 50% 0); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .flap-back { position: absolute; left: 0; right: 0; top: 0; height: 50%; background: #fff;
+    border: 1px solid #E5E9E4; border-top: 0; border-radius: 0 0 20px 20px;
+    box-shadow: inset 0 -18px 24px -18px rgba(24,33,28,.08);
+    transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .fold-card::after { content: ""; position: absolute; left: 1px; right: 1px; top: 50%; height: 34%; opacity: 0; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(24,33,28,.10), rgba(24,33,28,0)); }
+  #top.play .fold-flap { animation: flapOpen 880ms cubic-bezier(.22,.8,.26,1) var(--t-unfold) both; }
+  #top.play .fold-flap > .card { animation: flapShade 880ms ease-out var(--t-unfold) both; }
+  #top.play .fold-card > .card { animation: halfOnly 880ms linear var(--t-unfold) both; }
+  #top.play .fold-card::after { animation: creaseFade 880ms ease-out var(--t-unfold) both; }
+  @keyframes flapOpen { 0% { transform: rotateX(-180deg); visibility: visible; } 99.9% { transform: rotateX(0deg); visibility: visible; } 100% { transform: none; visibility: hidden; } }
+  @keyframes flapShade { from { filter: brightness(.8); } to { filter: brightness(1); } }
+  @keyframes halfOnly { 0%, 99.9% { clip-path: inset(50% -4px -4px -4px); } 100% { clip-path: none; } }
+  @keyframes creaseFade { 0%, 30% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* Colours meet: Maya fills from the left, Jon from the right, avatars slide together. */
+  .seg-a { transform-origin: 0 50%; }
+  .seg-j { transform-origin: 100% 50%; }
+  #top.play .seg-a, #top.play .seg-j { animation: segFill 760ms cubic-bezier(.16,1,.3,1) calc(var(--t-meet) + 80ms) both; }
+  #top.play .av-m { animation: fromLeft 560ms cubic-bezier(.16,1,.3,1) var(--t-meet) both; }
+  #top.play .av-j { animation: fromRight 560ms cubic-bezier(.16,1,.3,1) var(--t-meet) both; }
+  @keyframes segFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes fromLeft { from { transform: translateX(-14px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes fromRight { from { transform: translateX(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* The one motion idea, done properly: transactions LAND during the week.
+     Storytelling, not decoration. Staggered by --i, fired once on entry. */
+  .txn { opacity: 0; transform: translateY(12px); }
+  .landed .txn { animation: land .55s cubic-bezier(.16,1,.3,1) forwards; animation-delay: calc(var(--i) * 130ms); }
+  @keyframes land { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .txn { opacity: 1; transform: none; } .landed .txn { animation: none; } }
+
+  .btn-press:active { transform: translateY(1px) scale(.985); }
+
+  /* Brand mark lives in the <symbol> below. Source: brand/marks/twofold.svg. */
+
+
+  /* Week picker. State lives in aria-pressed, so styling and accessibility can't drift apart. */
+  .day { background:#FAFAF7; border-color:#E5E9E4; color:#5C6862; cursor:pointer; transition:background-color .2s, border-color .2s, color .2s; }
+  .day:hover { border-color:#7CBC9E; }
+  /* On a 360-375px phone seven chips come out 39-42px wide. The hit area reaches 3px
+     into the gap on each side (half of gap-1.5), so every day is a 45px+ target
+     without changing how the strip looks. */
+  .day { position:relative; }
+  .day::after { content:""; position:absolute; inset:0 -3px; }
+  .day:focus-visible { outline:2px solid #3B8168; outline-offset:2px; }
+  .day[aria-pressed="true"] { background:#3B8168; border-color:#3B8168; color:#FFFFFF; }
+  .day[aria-pressed="true"] .day-name { color:#DEEFE5; }
+  .day[aria-pressed="true"] .day-dots { display:none !important; }
+  @media (min-width:640px) { .day[aria-pressed="true"] .day-min { display:block; } }
+
+  details.faq summary { cursor: pointer; list-style: none; }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq .fi { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  details.faq[open] .fi { transform: rotate(45deg); }
+
+  /* Landscape phone. This hero already fits, but the rule keeps the whole set
+     consistent so a future edit cannot quietly push the CTA below the fold. */
+  @media (max-height: 520px) and (orientation: landscape) {
+    header#top { padding-top: 1rem !important; padding-bottom: 1.5rem !important; }
+    header#top h1 { font-size: 1.875rem !important; line-height: 1.1 !important; }
+    header#top h1 + p { margin-top: .75rem !important; font-size: 1rem !important; }
+  }
+</style>
+</head>
+<body class="font-body text-ink bg-paper antialiased">
+
+<!-- BRAND MARK : the origami "2" from the brand kit, traced by measurement.
+     Apricot plane, light-jade facets, dark-jade band and base. Palette colours only.
+     Square viewBox, so it drops into any square slot. Source + method: brand/marks/twofold.svg -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="tf-sil"><path d="M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z"/></clipPath>
+    <symbol id="mark" viewBox="-30.19 4.67 354.65 354.65">
+      <g clip-path="url(#tf-sil)">
+    <path d="M212.37 7.36 L287.7 80.8 A10.5 10.5 0 0 1 290.88 88.32 L290.88 173.58 A9.5 9.5 0 0 1 286.89 181.32 L159.07 272.4 A1.5 1.5 0 0 0 159.95 275.13 L281.36 275.13 A9.5 9.5 0 0 1 290.86 284.62 L290.9 349.31 A10 10 0 0 1 280.9 359.32 L12.86 359.3 A9.5 9.5 0 0 1 3.36 349.78 L3.5 274.79 A11.5 11.5 0 0 1 8.45 265.35 L204.03 129.98 A1 1 0 0 0 204.46 129.23 L206.78 94.63 A1.5 1.5 0 0 0 205.28 93.03 L114.96 92.86 A9 9 0 0 0 109.43 94.75 L17.2 166.13 A8.5 8.5 0 0 1 3.49 159.42 L3.43 82.01 A14 14 0 0 1 7.93 71.72 L76.55 8.31 A13 13 0 0 1 85.35 4.86 L205.72 4.67 A9.5 9.5 0 0 1 212.37 7.36 Z" fill="#2E6552"/>
+    <path d="M-100 258.88 L175.18 259.36 L-105.72 500 L-100 500 Z" fill="#7CBC9E"/>
+    <path d="M216.34 -100 L500 -100 L500 -42.86 L205.08 128.99 Z" fill="#7CBC9E"/>
+    <path d="M216.74 -100 L206.41 110.1 L-100 273.24 L-100 -100 Z" fill="#E3A377"/>
+  </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+    <!-- Mark only. The name is in the hero copy right below, so the nav doesn't repeat it.
+         Up from 24px to 28px now it stands alone; the link keeps a 44px tap area. -->
+    <a href="#top" aria-label="TwoFold, back to top" class="flex items-center justify-center min-h-[44px] min-w-[44px] -ml-2">
+      <svg class="w-7 h-7" aria-hidden="true"><use href="#mark"/></svg>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-mute">
+      <a href="#week" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">How it works</a>
+      <a href="#check-in" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">Check-in</a>
+      <a href="#goals" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">Goals</a>
+      <a href="#pricing" class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-ink transition-colors">Pricing</a>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href="#" class="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-sm text-mute hover:text-ink transition-colors">Log in</a>
+      <a href="#start" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white text-sm font-medium px-4 sm:px-5 py-3 hover:bg-jade-700 transition-colors">Start together</a>
+      <!-- Without this, below md only the wordmark and one CTA are reachable and
+           Log in disappears entirely, leaving existing customers no way in on a phone. -->
+      <button id="navToggle" type="button"
+              class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-line text-ink hover:bg-white transition-colors"
+              aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <i id="navToggleIcon" class="ph ph-list text-xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileNav" class="hidden md:hidden border-t border-line bg-paper">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col divide-y divide-line">
+      <a href="#week" class="py-3 text-ink hover:text-jade-700 transition-colors">How it works</a>
+      <a href="#check-in" class="py-3 text-ink hover:text-jade-700 transition-colors">Check-in</a>
+      <a href="#goals" class="py-3 text-ink hover:text-jade-700 transition-colors">Goals</a>
+      <a href="#pricing" class="py-3 text-ink hover:text-jade-700 transition-colors">Pricing</a>
+      <a href="#" class="py-3 text-ink hover:text-jade-700 transition-colors">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO : centred statement, then a slice of the product. Same order at every width.
+     No big mark here; the nav already carries it.
+     Motion (once, on load): the headline folds up, the recap card unfolds as it lands,
+     then Maya's and Jon's colours meet in the goal bar. Without JS or with Reduce Motion
+     the script never adds .play, so the hero simply renders finished. -->
+<header id="top" class="max-w-6xl mx-auto px-6 pt-10 sm:pt-16 md:pt-20 pb-14 sm:pb-20 md:pb-24">
+  <div class="flex flex-col items-center text-center gap-10 sm:gap-14">
+    <div>
+      <!-- 32px on mobile is the largest size where "down to five minutes."
+           still holds one line at 375px. Bigger and the hero runs to 3 lines. -->
+      <h1 class="font-display font-bold text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] tracking-tight leading-[1.05]">
+        <span class="fold-line">The money talk,</span>
+        <span class="fold-line">down to five minutes.</span>
+      </h1>
+      <p class="hero-rise mt-7 text-lg md:text-xl text-mute leading-relaxed max-w-[44ch] mx-auto text-balance">
+        TwoFold watches the week for both of you. On the day you pick, you two catch up and decide what's next.
+      </p>
+      <!-- Below sm the secondary action is a text link rather than a second
+           full button. Two stacked buttons cost ~70px of fold and split attention. -->
+      <div class="hero-rise mt-8 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-5 sm:gap-4">
+        <a href="#start" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white font-medium px-8 py-4 hover:bg-jade-700 transition-colors">Start together</a>
+        <a href="#check-in" class="btn-press inline-flex items-center gap-2 min-h-[44px] font-medium text-ink transition-colors sm:rounded-full sm:border sm:border-line sm:px-8 sm:py-4 sm:hover:bg-white">
+          See a recap<i class="ph ph-arrow-right sm:hidden text-jade-600"></i>
+        </a>
+      </div>
+    </div>
+    <!-- A compact slice of the real weekly recap rather than the mark. An abstract
+         logo is decoration; this is the product, and it argues for itself above the
+         fold. Sample data. -->
+    <div class="fold-card w-full max-w-sm lg:max-w-md text-left">
+      <div class="card rounded-[20px] bg-white border border-line p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-mute">Our money</span>
+          <div class="flex -space-x-2">
+            <span class="av-m w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-white">M</span>
+            <span class="av-j w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-white">J</span>
+          </div>
+        </div>
+        <p class="mt-3 font-num num text-4xl font-medium tracking-tight">$4,218</p>
+        <p class="mt-1 text-sm text-mute">left to spend in June</p>
+        <div class="mt-5 pt-4 border-t border-line flex items-center justify-between text-sm">
+          <span class="text-mute">First home</span>
+          <span class="font-num num text-mute">31,200 of 60,000</span>
+        </div>
+        <div class="mt-2 h-2 rounded-full bg-line overflow-hidden flex">
+          <span class="seg-a h-2 bg-apricot-400" style="width:24%"></span>
+          <span class="seg-j h-2 bg-jade-400" style="width:28%"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- THE WEEK : the page's spine, stated once, visually.
+     The check-in day is the couple's choice, so the strip is a picker: it starts on
+     the visitor's own weekday and moves wherever they tap. Without JS nothing is
+     pressed and the caption still says "any day", so the message holds either way. -->
+<section id="week" class="border-y border-line bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-10 sm:py-14 md:py-20">
+    <h2 class="reveal font-display font-bold text-2xl md:text-3xl tracking-tight max-w-[34ch]">
+      TwoFold works all week. You two pick one day to show up.
+    </h2>
+    <!-- Below sm the cells are ~40px wide, so day names drop to single letters and
+         the dots and "5 min" are hidden; the caption carries the five minutes. -->
+    <div class="reveal mt-8 sm:mt-10 grid grid-cols-7 gap-1.5 sm:gap-3" role="group" aria-label="Pick your check-in day" style="transition-delay:80ms">
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="1" data-name="Monday" aria-pressed="false" aria-label="Monday">
+        <span class="day-name block text-xs"><span class="sm:hidden">M</span><span class="hidden sm:inline">Mon</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-apricot-200"></span><span class="w-1.5 h-1.5 rounded-full bg-jade-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="2" data-name="Tuesday" aria-pressed="false" aria-label="Tuesday">
+        <span class="day-name block text-xs"><span class="sm:hidden">T</span><span class="hidden sm:inline">Tue</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-jade-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="3" data-name="Wednesday" aria-pressed="false" aria-label="Wednesday">
+        <span class="day-name block text-xs"><span class="sm:hidden">W</span><span class="hidden sm:inline">Wed</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-apricot-200"></span><span class="w-1.5 h-1.5 rounded-full bg-apricot-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="4" data-name="Thursday" aria-pressed="false" aria-label="Thursday">
+        <span class="day-name block text-xs"><span class="sm:hidden">T</span><span class="hidden sm:inline">Thu</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-jade-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="5" data-name="Friday" aria-pressed="false" aria-label="Friday">
+        <span class="day-name block text-xs"><span class="sm:hidden">F</span><span class="hidden sm:inline">Fri</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-apricot-200"></span><span class="w-1.5 h-1.5 rounded-full bg-jade-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="6" data-name="Saturday" aria-pressed="false" aria-label="Saturday">
+        <span class="day-name block text-xs"><span class="sm:hidden">S</span><span class="hidden sm:inline">Sat</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-jade-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+      <button type="button" class="day rounded-2xl sm:rounded-[20px] border px-1 sm:px-2 py-4 sm:py-5 md:py-7 text-center" data-day="0" data-name="Sunday" aria-pressed="false" aria-label="Sunday">
+        <span class="day-name block text-xs"><span class="sm:hidden">S</span><span class="hidden sm:inline">Sun</span></span>
+        <span class="day-dots mt-3 hidden sm:flex justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-apricot-200"></span></span>
+        <span class="day-min mt-2 font-num text-xs sm:text-sm font-medium hidden">5 min</span>
+      </button>
+    </div>
+    <p id="dayCaption" class="reveal mt-4 text-sm text-mute" aria-live="polite">Five minutes, once a week, on any day. Tap one to make it yours.</p>
+  </div>
+</section>
+
+<!-- DURING THE WEEK : copy left, transactions landing right -->
+<section class="max-w-6xl mx-auto px-6 py-14 sm:py-20 md:py-28">
+  <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <div class="reveal">
+      <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1]">
+        Nobody has to log anything.
+      </h2>
+      <p class="mt-6 text-lg text-mute leading-relaxed max-w-[42ch]">
+        Both of your accounts land in one place and sort themselves out. You will not spend Tuesday night tagging receipts, because that is how couples quit.
+      </p>
+      <div class="mt-8 flex items-center gap-5 text-sm">
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-apricot-400"></span>Maya</span>
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-jade-400"></span>Jon</span>
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-ink"></span>Ours</span>
+      </div>
+    </div>
+
+    <!-- Real component preview. Sample data. -->
+    <div class="reveal js-land rounded-[20px] bg-white border border-line p-6 md:p-7" style="transition-delay:100ms">
+      <ul class="space-y-4 text-sm">
+        <li class="txn flex items-center justify-between" style="--i:0">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-apricot-400 shrink-0"></span>
+            <div><p class="font-medium">Trader Joe's</p><p class="text-xs text-mute">Groceries</p></div>
+          </div>
+          <span class="font-num num text-mute">-84.20</span>
+        </li>
+        <li class="txn flex items-center justify-between" style="--i:1">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-jade-400 shrink-0"></span>
+            <div><p class="font-medium">Shell</p><p class="text-xs text-mute">Gas</p></div>
+          </div>
+          <span class="font-num num text-mute">-41.87</span>
+        </li>
+        <li class="txn flex items-center justify-between" style="--i:2">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-ink shrink-0"></span>
+            <div><p class="font-medium">Rent</p><p class="text-xs text-mute">Home</p></div>
+          </div>
+          <span class="font-num num text-mute">-1,650.00</span>
+        </li>
+        <li class="txn flex items-center justify-between" style="--i:3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-apricot-400 shrink-0"></span>
+            <div><p class="font-medium">Blue Bottle</p><p class="text-xs text-mute">Coffee</p></div>
+          </div>
+          <span class="font-num num text-mute">-7.25</span>
+        </li>
+        <li class="txn flex items-center justify-between" style="--i:4">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-jade-400 shrink-0"></span>
+            <div><p class="font-medium">Osteria Nella</p><p class="text-xs text-mute">Date night</p></div>
+          </div>
+          <span class="font-num num text-mute">-62.40</span>
+        </li>
+      </ul>
+      <p class="txn mt-6 pt-5 border-t border-line text-xs text-mute flex items-center gap-2" style="--i:5">
+        <i class="ph ph-sparkle text-jade-600"></i> Sorted as they arrive
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHECK-IN : the centrepiece. The product's real hero object. -->
+<section id="check-in" class="border-y border-line bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-16 sm:py-20 md:py-28">
+    <div class="max-w-[34ch] reveal">
+      <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1]">Then you two check in.</h2>
+      <p class="mt-6 text-lg text-mute leading-relaxed">
+        One recap, both of you, five minutes. It ends with a decision, not a spreadsheet.
+      </p>
+    </div>
+
+    <!-- Real component preview. Sample data. -->
+    <div class="reveal mt-12 max-w-2xl mx-auto rounded-[20px] bg-paper border border-line p-7 md:p-10" style="transition-delay:100ms">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-bold text-lg tracking-tight">Your week</p>
+        <div class="flex -space-x-2">
+          <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-paper">M</span>
+          <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-paper">J</span>
+        </div>
+      </div>
+
+      <div class="mt-7 grid grid-cols-3 gap-4 text-center">
+        <div class="rounded-[20px] bg-white border border-line py-5">
+          <p class="text-xs text-mute">Came in</p>
+          <p class="mt-1.5 font-num num font-medium text-lg">9,340</p>
+        </div>
+        <div class="rounded-[20px] bg-white border border-line py-5">
+          <p class="text-xs text-mute">Went out</p>
+          <p class="mt-1.5 font-num num font-medium text-lg">5,122</p>
+        </div>
+        <div class="rounded-[20px] bg-jade-600 text-white py-5">
+          <p class="text-xs text-jade-100">Left over</p>
+          <p class="mt-1.5 font-num num font-medium text-lg">4,218</p>
+        </div>
+      </div>
+
+      <!-- The differentiating element: the recap ends in a shared decision. -->
+      <div class="mt-6 rounded-[20px] border border-apricot-200 bg-apricot-50 p-5 md:p-6">
+        <p class="text-sm font-medium">One thing to sort out</p>
+        <p class="mt-2 text-mute leading-relaxed">
+          Groceries came in <span class="font-num num">$86</span> over. Take it from Fun money, or leave it and move on?
+        </p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <button class="btn-press rounded-full bg-jade-600 text-white text-sm font-medium px-5 py-3 hover:bg-jade-700 transition-colors">Move it</button>
+          <button class="btn-press rounded-full bg-white border border-line text-ink text-sm font-medium px-5 py-3 hover:bg-paper transition-colors">Leave it</button>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between text-sm">
+        <span class="text-mute">First home</span>
+        <span class="font-num num text-mute">31,200 of 60,000</span>
+      </div>
+      <div class="mt-2 h-2 rounded-full bg-line overflow-hidden flex">
+        <span class="h-2 bg-apricot-400" style="width:24%"></span>
+        <span class="h-2 bg-jade-400" style="width:28%"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLLOVER : compact wide band -->
+<section class="max-w-6xl mx-auto px-6 py-10 sm:py-16 md:py-24">
+  <div class="reveal flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
+    <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1] md:max-w-[14ch] shrink-0">
+      Nothing resets to zero.
+    </h2>
+    <div class="md:border-l md:border-line md:pl-16">
+      <p class="text-lg text-mute leading-relaxed max-w-[46ch]">
+        A quiet month leaves money behind for the next one. A loud month borrows from it. Budgets should behave like the life they are describing.
+      </p>
+      <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-jade-50 border border-jade-100 px-4 py-2 text-sm text-jade-700">
+        <i class="ph ph-arrow-bend-down-right"></i><span class="font-num num">$58</span> unspent in May rolled into June
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THREE LANES : privacy, diagrammed rather than described -->
+<section class="border-y border-line bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-14 sm:py-20 md:py-28">
+    <div class="max-w-[44ch] reveal">
+      <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1]">Together is not the same as transparent.</h2>
+      <p class="mt-6 text-lg text-mute leading-relaxed">
+        You decide what joins the shared view. Everything else stays yours, and your partner never sees a trace of it.
+      </p>
+    </div>
+
+    <!-- Sample data. Middle lane is deliberately dominant: shared is the point. -->
+    <div class="reveal mt-12 grid md:grid-cols-[1fr_1.3fr_1fr] gap-5" style="transition-delay:100ms">
+      <div class="rounded-[20px] border border-apricot-200 bg-apricot-50 p-6">
+        <p class="flex items-center gap-2 text-sm font-medium text-apricot-700"><span class="w-2.5 h-2.5 rounded-full bg-apricot-400"></span>Maya's alone</p>
+        <ul class="mt-5 space-y-3 text-sm">
+          <li class="flex items-center justify-between"><span>Her checking</span><i class="ph ph-lock-simple text-apricot-700"></i></li>
+          <li class="flex items-center justify-between"><span>Gift fund</span><i class="ph ph-lock-simple text-apricot-700"></i></li>
+        </ul>
+      </div>
+      <div class="rounded-[20px] bg-ink text-white p-6 md:p-8">
+        <p class="flex items-center gap-2 text-sm font-medium"><span class="w-2.5 h-2.5 rounded-full bg-white"></span>Ours</p>
+        <ul class="mt-5 space-y-4 text-sm">
+          <li class="flex items-center justify-between"><span>Joint savings</span><span class="font-num num text-white/70">18,204.90</span></li>
+          <li class="flex items-center justify-between"><span>Rent and bills</span><span class="font-num num text-white/70">2,410.00</span></li>
+          <li class="flex items-center justify-between"><span>Shared card</span><span class="font-num num text-white/70">-736.28</span></li>
+          <li class="flex items-center justify-between"><span>First home</span><span class="font-num num text-white/70">31,200.00</span></li>
+        </ul>
+      </div>
+      <div class="rounded-[20px] border border-jade-200 bg-jade-50 p-6">
+        <p class="flex items-center gap-2 text-sm font-medium text-jade-700"><span class="w-2.5 h-2.5 rounded-full bg-jade-400"></span>Jon's alone</p>
+        <ul class="mt-5 space-y-3 text-sm">
+          <li class="flex items-center justify-between"><span>His checking</span><i class="ph ph-lock-simple text-jade-600"></i></li>
+          <li class="flex items-center justify-between"><span>Surprise fund</span><i class="ph ph-lock-simple text-jade-600"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS : two-colour stacked contributions. The palette doing real work. -->
+<section id="goals" class="max-w-6xl mx-auto px-6 py-16 sm:py-20 md:py-28">
+  <div class="max-w-[34ch] reveal">
+    <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1]">You can see who is carrying what.</h2>
+    <p class="mt-6 text-lg text-mute leading-relaxed">
+      Not to keep score. Because two people earning differently still deserve to see the same picture.
+    </p>
+  </div>
+
+  <!-- Sample data. -->
+  <div class="reveal mt-12 grid md:grid-cols-3 gap-5">
+    <div class="rounded-[20px] bg-white border border-line p-7">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-bold text-lg tracking-tight">First home</p>
+        <i class="ph ph-house-line text-mute text-xl"></i>
+      </div>
+      <p class="mt-6 font-num num text-2xl font-medium">31,200</p>
+      <p class="text-sm text-mute">of 60,000</p>
+      <div class="mt-4 h-2 rounded-full bg-line overflow-hidden flex">
+        <span class="h-2 bg-apricot-400" style="width:24%"></span>
+        <span class="h-2 bg-jade-400" style="width:28%"></span>
+      </div>
+    </div>
+    <div class="rounded-[20px] bg-white border border-line p-7">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-bold text-lg tracking-tight">Wedding</p>
+        <i class="ph ph-champagne text-mute text-xl"></i>
+      </div>
+      <p class="mt-6 font-num num text-2xl font-medium">8,400</p>
+      <p class="text-sm text-mute">of 15,000</p>
+      <div class="mt-4 h-2 rounded-full bg-line overflow-hidden flex">
+        <span class="h-2 bg-apricot-400" style="width:31%"></span>
+        <span class="h-2 bg-jade-400" style="width:25%"></span>
+      </div>
+    </div>
+    <div class="rounded-[20px] bg-ink text-white p-7">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-bold text-lg tracking-tight">Japan</p>
+        <i class="ph ph-airplane-tilt text-white/50 text-xl"></i>
+      </div>
+      <p class="mt-6 font-num num text-2xl font-medium">3,940</p>
+      <p class="text-sm text-white/60">of 5,500</p>
+      <div class="mt-4 h-2 rounded-full bg-white/15 overflow-hidden flex">
+        <span class="h-2 bg-apricot-400" style="width:38%"></span>
+        <span class="h-2 bg-jade-400" style="width:34%"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST : compact, evidence not adjectives -->
+<section class="border-y border-line bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-10 sm:py-14 md:py-20">
+    <h2 class="reveal font-display font-bold text-2xl md:text-3xl tracking-tight">We can watch. We cannot touch.</h2>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="reveal">
+        <i class="ph ph-plugs-connected text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">Connected through Plaid</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">The same link most major banks use.</p>
+      </div>
+      <div class="reveal" style="transition-delay:60ms">
+        <i class="ph ph-hand-palm text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">Read-only by design</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">No transfers, no payments, not possible.</p>
+      </div>
+      <div class="reveal" style="transition-delay:120ms">
+        <i class="ph ph-shield-check text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">256-bit encryption</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">Your bank login is never stored with us.</p>
+      </div>
+      <div class="reveal" style="transition-delay:180ms">
+        <i class="ph ph-receipt text-jade-600 text-2xl"></i>
+        <p class="mt-3 font-medium">No ads, no data sales</p>
+        <p class="mt-1 text-sm text-mute leading-relaxed">Subscriptions keep the lights on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="max-w-6xl mx-auto px-6 py-14 sm:py-20 md:py-28">
+  <div class="max-w-md mx-auto reveal">
+    <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight text-center leading-[1.1]">One price, two of you.</h2>
+    <div class="mt-10 rounded-[20px] bg-white border border-line p-8 md:p-10">
+      <div class="flex items-end gap-2">
+        <span class="font-num num font-medium text-5xl tracking-tight">$12</span>
+        <span class="text-mute pb-1.5">your first year</span>
+      </div>
+      <!-- Renewal stated right under the price, not in fine print. A finance app that
+           hides what it renews at loses the trust it is asking people for. -->
+      <p class="mt-2 text-sm text-ink">Then <span class="font-num num font-medium">$50</span> a year, for both of you.</p>
+      <ul class="mt-8 space-y-3.5 text-sm">
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Both partners, one subscription</li>
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Unlimited accounts and goals</li>
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Every feature, no tiers</li>
+        <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Leave whenever, data comes with you</li>
+      </ul>
+      <a href="#start" class="btn-press mt-9 w-full inline-flex justify-center rounded-full bg-jade-600 text-white font-medium px-8 py-4 hover:bg-jade-700 transition-colors">Start together</a>
+      <!-- 14 day trial that converts to the $12 year on its own. The reminder goes out before
+           the charge, not after: a surprise charge is how a finance app earns chargebacks. -->
+      <p class="mt-4 text-center text-xs text-mute text-balance">Free for 14 days. We'll email you before we charge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-6xl mx-auto px-6 pb-14 sm:pb-20 md:pb-28">
+  <div class="max-w-2xl reveal">
+    <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight">Fair questions.</h2>
+    <div class="mt-10 divide-y divide-line border-t border-line">
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">What if one of us hates money stuff?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">Then that person reads the weekly recap and answers one question. That is the entire job. The other one can go as deep as they like.</p>
+      </details>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">We keep our money mostly separate. Still useful?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">Yes, and it is the common case. Share the joint account and the bills, keep the rest private. The shared view only ever holds what you both put in it.</p>
+      </details>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">Do we both get our own login?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">One subscription, two logins. You each connect your own banks, and neither of you needs the other's password for anything.</p>
+      </details>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">What happens if we split up?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">Either of you can unlink and leave at any time, with your own data. We will not hold one partner's history hostage to the other's account.</p>
+      </details>
+      <details class="faq py-4 open:pb-6">
+        <summary class="flex items-center justify-between gap-4 py-2 font-medium text-lg">Can TwoFold move our money?<i class="ph ph-plus fi text-jade-600 shrink-0"></i></summary>
+        <p class="mt-1 text-mute leading-relaxed">No. Connections are read-only, so we can show you what happened and nothing more.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="start" class="max-w-6xl mx-auto px-6 pb-14 sm:pb-20 md:pb-24">
+  <div class="reveal rounded-[20px] bg-jade-600 text-white px-8 py-12 sm:py-16 md:py-20 text-center">
+    <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight leading-[1.1]">Give it two weeks.</h2>
+    <p class="mt-4 text-jade-50/90 text-lg max-w-[36ch] mx-auto">That is two check-ins, free. If it is not for you, cancel before day 14 and you pay nothing.</p>
+    <a href="#" class="btn-press mt-9 inline-flex items-center rounded-full bg-white text-jade-700 font-medium px-8 py-4 hover:bg-jade-50 transition-colors">Start together</a>
+  </div>
+</section>
+
+<!-- FOOTER : dark bookend, contact included -->
+<footer class="bg-ink text-white">
+  <div class="max-w-6xl mx-auto px-6 pt-16 md:pt-20 pb-10">
+    <div class="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div>
+        <svg class="w-11 h-11" aria-hidden="true"><use href="#mark"/></svg>
+        <p class="mt-5 font-display font-bold text-3xl tracking-tight">TwoFold</p>
+        <p class="mt-3 text-white/60 max-w-[30ch] leading-relaxed">Five minutes a week, and the rest of it to yourselves.</p>
+      </div>
+      <div>
+        <p class="text-sm text-white/40 mb-4">Product</p>
+        <ul class="text-sm">
+          <li><a href="#week" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">How it works</a></li>
+          <li><a href="#check-in" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Weekly recap</a></li>
+          <li><a href="#goals" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Goals</a></li>
+          <li><a href="#pricing" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm text-white/40 mb-4">Company</p>
+        <ul class="text-sm">
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Security</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Privacy</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Terms</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm text-white/40 mb-4">Contact</p>
+        <ul class="text-sm">
+          <li><a href="mailto:hello@twofold.app" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">hello@twofold.app</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">Instagram</a></li>
+          <li><a href="#" class="inline-flex items-center min-h-[44px] min-w-[44px] text-white/80 hover:text-white transition-colors">X</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-14 pt-8 border-t border-white/10 text-sm text-white/40">
+      © 2026 TwoFold. Made for two.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Week picker: default to today, move on tap, announce the choice.
+  (function () {
+    var days = document.querySelectorAll('.day');
+    var caption = document.getElementById('dayCaption');
+    if (!days.length) return;
+    function select(btn, announce) {
+      days.forEach(function (d) { d.setAttribute('aria-pressed', d === btn ? 'true' : 'false'); });
+      if (announce && caption) caption.textContent = btn.dataset.name + ' it is. Five minutes, once a week.';
+    }
+    var today = String(new Date().getDay());
+    days.forEach(function (d) {
+      if (d.dataset.day === today) select(d, false);
+      d.addEventListener('click', function () { select(d, true); });
+    });
+  })();
+
+  // Mobile nav. Plain toggle, no dependencies. aria-expanded is kept in sync so
+  // screen readers announce state, and the panel closes on any link tap since
+  // every item is an in-page anchor.
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var panel = document.getElementById('mobileNav');
+    var icon = document.getElementById('navToggleIcon');
+    if (!btn || !panel) return;
+
+    function setOpen(open) {
+      panel.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      icon.className = open ? 'ph ph-x text-xl' : 'ph ph-list text-xl';
+    }
+
+    btn.addEventListener('click', function () {
+      setOpen(panel.classList.contains('hidden'));
+    });
+
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.classList.contains('hidden')) {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+  })();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero motion. The flap is a clone of the recap card so the markup keeps one source.
+  if (!reduce) {
+    var hero = document.getElementById('top');
+    var foldCard = hero.querySelector('.fold-card');
+    var flap = document.createElement('div');
+    flap.className = 'fold-flap';
+    flap.setAttribute('aria-hidden', 'true');
+    flap.innerHTML = '<div class="flap-back"></div>';
+    flap.appendChild(foldCard.querySelector('.card').cloneNode(true));
+    foldCard.appendChild(flap);
+    hero.classList.add('play');
+  }
+
+  var items = document.querySelectorAll('.reveal');
+
+  if (reduce) {
+    items.forEach(function (el) { el.classList.add('is-visible'); });
+    document.querySelectorAll('.js-land').forEach(function (el) { el.classList.add('landed'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        if (entry.target.classList.contains('js-land')) entry.target.classList.add('landed');
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+</script>
+</body>
+</html>

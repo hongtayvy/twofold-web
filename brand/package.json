@@ -1,0 +1,16 @@
+{
+  "name": "twofold-brand",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local brand asset pipeline for TwoFold. Takes a candidate mark SVG and produces optimized SVG, monochrome variants, PNG exports, and a full favicon set.",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:all": "node build.mjs --all"
+  },
+  "dependencies": {
+    "favicons": "^7.2.0",
+    "sharp": "^0.33.5",
+    "svgo": "^3.3.2"
+  }
+}

@@ -7,8 +7,10 @@
   // twofoldfinance.com is the only public address. Without this line every deploy
   // turns the twofold-web.<account>.workers.dev address back on.
   "workers_dev": false,
-  // Per-branch preview URLs stay on so a branch can be checked before it merges.
+  // Per-branch previews stay on so a branch can be checked before it merges.
+  // Cloudflare's preview builds (`npx wrangler preview`) require this block, even empty.
   "preview_urls": true,
+  "previews": {},
   "assets": {
     "directory": "./site"
   }

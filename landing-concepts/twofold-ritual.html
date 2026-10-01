@@ -78,6 +78,50 @@
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+  /* HERO MOTION. Only runs under #top.play, which the script adds on load unless the
+     visitor has Reduce Motion on. Transforms, opacity, clip-path and one filter only.
+     Sequence: headline 0-0.7s, card unfolds 0.3-1.2s, colours meet 0.85-1.7s. */
+  #top { --t-unfold: 300ms; --t-meet: 850ms; }
+  #top h1 { perspective: 700px; }
+  .fold-line { display: block; transform-origin: 50% 100%; }
+  #top.play .fold-line { animation: lineUp 620ms cubic-bezier(.16,1,.3,1) both; }
+  #top.play .fold-line + .fold-line { animation-delay: 110ms; }
+  #top.play .hero-rise { animation: heroRise 600ms cubic-bezier(.16,1,.3,1) 200ms both; }
+  #top.play .hero-rise + .hero-rise { animation-delay: 280ms; }
+  @keyframes lineUp { from { transform: rotateX(88deg); opacity: 0; } 35% { opacity: 1; } to { transform: none; opacity: 1; } }
+  @keyframes heroRise { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* The card: the real card shows only its bottom half while a clone of the top half
+     (the flap, built by the script, aria-hidden) hinges toward you on the centre crease.
+     At the end the flap hides and the real card is whole, so nothing stays duplicated. */
+  .fold-card { position: relative; perspective: 1300px; }
+  .fold-flap { position: absolute; inset: 0; pointer-events: none; transform-origin: 50% 50%; transform-style: preserve-3d; visibility: hidden; }
+  .fold-flap > .card { height: 100%; clip-path: inset(0 0 50% 0); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .flap-back { position: absolute; left: 0; right: 0; top: 0; height: 50%; background: #fff;
+    border: 1px solid #E5E9E4; border-top: 0; border-radius: 0 0 20px 20px;
+    box-shadow: inset 0 -18px 24px -18px rgba(24,33,28,.08);
+    transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .fold-card::after { content: ""; position: absolute; left: 1px; right: 1px; top: 50%; height: 34%; opacity: 0; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(24,33,28,.10), rgba(24,33,28,0)); }
+  #top.play .fold-flap { animation: flapOpen 880ms cubic-bezier(.22,.8,.26,1) var(--t-unfold) both; }
+  #top.play .fold-flap > .card { animation: flapShade 880ms ease-out var(--t-unfold) both; }
+  #top.play .fold-card > .card { animation: halfOnly 880ms linear var(--t-unfold) both; }
+  #top.play .fold-card::after { animation: creaseFade 880ms ease-out var(--t-unfold) both; }
+  @keyframes flapOpen { 0% { transform: rotateX(-180deg); visibility: visible; } 99.9% { transform: rotateX(0deg); visibility: visible; } 100% { transform: none; visibility: hidden; } }
+  @keyframes flapShade { from { filter: brightness(.8); } to { filter: brightness(1); } }
+  @keyframes halfOnly { 0%, 99.9% { clip-path: inset(50% -4px -4px -4px); } 100% { clip-path: none; } }
+  @keyframes creaseFade { 0%, 30% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* Colours meet: Maya fills from the left, Jon from the right, avatars slide together. */
+  .seg-a { transform-origin: 0 50%; }
+  .seg-j { transform-origin: 100% 50%; }
+  #top.play .seg-a, #top.play .seg-j { animation: segFill 760ms cubic-bezier(.16,1,.3,1) calc(var(--t-meet) + 80ms) both; }
+  #top.play .av-m { animation: fromLeft 560ms cubic-bezier(.16,1,.3,1) var(--t-meet) both; }
+  #top.play .av-j { animation: fromRight 560ms cubic-bezier(.16,1,.3,1) var(--t-meet) both; }
+  @keyframes segFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes fromLeft { from { transform: translateX(-14px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes fromRight { from { transform: translateX(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+
   /* The one motion idea, done properly: transactions LAND during the week.
      Storytelling, not decoration. Staggered by --i, fired once on entry. */
   .txn { opacity: 0; transform: translateY(12px); }
@@ -176,21 +220,25 @@
 </nav>
 
 <!-- HERO : centred statement, then a slice of the product. Same order at every width.
-     No big mark here; the nav already carries it. -->
+     No big mark here; the nav already carries it.
+     Motion (once, on load): the headline folds up, the recap card unfolds as it lands,
+     then Maya's and Jon's colours meet in the goal bar. Without JS or with Reduce Motion
+     the script never adds .play, so the hero simply renders finished. -->
 <header id="top" class="max-w-6xl mx-auto px-6 pt-10 sm:pt-16 md:pt-20 pb-14 sm:pb-20 md:pb-24">
   <div class="flex flex-col items-center text-center gap-10 sm:gap-14">
-    <div class="reveal">
+    <div>
       <!-- 32px on mobile is the largest size where "down to five minutes."
            still holds one line at 375px. Bigger and the hero runs to 3 lines. -->
       <h1 class="font-display font-bold text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] tracking-tight leading-[1.05]">
-        The money talk,<br>down to five minutes.
+        <span class="fold-line">The money talk,</span>
+        <span class="fold-line">down to five minutes.</span>
       </h1>
-      <p class="mt-7 text-lg md:text-xl text-mute leading-relaxed max-w-[44ch] mx-auto text-balance">
+      <p class="hero-rise mt-7 text-lg md:text-xl text-mute leading-relaxed max-w-[44ch] mx-auto text-balance">
         TwoFold watches the week for both of you. On the day you pick, you two catch up and decide what's next.
       </p>
       <!-- Below sm the secondary action is a text link rather than a second
            full button. Two stacked buttons cost ~70px of fold and split attention. -->
-      <div class="mt-8 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-5 sm:gap-4">
+      <div class="hero-rise mt-8 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-5 sm:gap-4">
         <a href="#start" class="btn-press inline-flex items-center rounded-full bg-jade-600 text-white font-medium px-8 py-4 hover:bg-jade-700 transition-colors">Start together</a>
         <a href="#check-in" class="btn-press inline-flex items-center gap-2 min-h-[44px] font-medium text-ink transition-colors sm:rounded-full sm:border sm:border-line sm:px-8 sm:py-4 sm:hover:bg-white">
           See a recap<i class="ph ph-arrow-right sm:hidden text-jade-600"></i>
@@ -200,13 +248,13 @@
     <!-- A compact slice of the real weekly recap rather than the mark. An abstract
          logo is decoration; this is the product, and it argues for itself above the
          fold. Sample data. -->
-    <div class="reveal w-full max-w-sm lg:max-w-md text-left" style="transition-delay:140ms">
-      <div class="rounded-[20px] bg-white border border-line p-6">
+    <div class="fold-card w-full max-w-sm lg:max-w-md text-left">
+      <div class="card rounded-[20px] bg-white border border-line p-6">
         <div class="flex items-center justify-between">
           <span class="text-sm text-mute">Our money</span>
           <div class="flex -space-x-2">
-            <span class="w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-white">M</span>
-            <span class="w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-white">J</span>
+            <span class="av-m w-7 h-7 rounded-full bg-apricot-200 text-apricot-700 text-xs font-semibold flex items-center justify-center ring-2 ring-white">M</span>
+            <span class="av-j w-7 h-7 rounded-full bg-jade-600 text-white text-xs font-semibold flex items-center justify-center ring-2 ring-white">J</span>
           </div>
         </div>
         <p class="mt-3 font-num num text-4xl font-medium tracking-tight">$4,218</p>
@@ -216,8 +264,8 @@
           <span class="font-num num text-mute">31,200 of 60,000</span>
         </div>
         <div class="mt-2 h-2 rounded-full bg-line overflow-hidden flex">
-          <span class="h-2 bg-apricot-400" style="width:24%"></span>
-          <span class="h-2 bg-jade-400" style="width:28%"></span>
+          <span class="seg-a h-2 bg-apricot-400" style="width:24%"></span>
+          <span class="seg-j h-2 bg-jade-400" style="width:28%"></span>
         </div>
       </div>
     </div>
@@ -689,6 +737,20 @@
   })();
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero motion. The flap is a clone of the recap card so the markup keeps one source.
+  if (!reduce) {
+    var hero = document.getElementById('top');
+    var foldCard = hero.querySelector('.fold-card');
+    var flap = document.createElement('div');
+    flap.className = 'fold-flap';
+    flap.setAttribute('aria-hidden', 'true');
+    flap.innerHTML = '<div class="flap-back"></div>';
+    flap.appendChild(foldCard.querySelector('.card').cloneNode(true));
+    foldCard.appendChild(flap);
+    hero.classList.add('play');
+  }
+
   var items = document.querySelectorAll('.reveal');
 
   if (reduce) {

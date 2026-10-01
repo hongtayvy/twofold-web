@@ -13,3 +13,6 @@ brand/node_modules/
 # Generated icon set: rebuild with `node build.mjs twofold`. The pages carry an
 # inline SVG favicon, so nothing at runtime depends on these files.
 brand/dist/
+
+# Wrangler local state (from `npx wrangler dev`)
+.wrangler/

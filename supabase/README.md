@@ -1,6 +1,6 @@
 # TwoFold waitlist
 
-Everything behind the email capture on `landing-concepts/twofold-coming-soon.html`.
+Everything behind the email capture on `site/index.html` (the coming-soon page).
 
 ```
 browser  ->  Edge Function (waitlist)  ->  Postgres public.waitlist
@@ -36,7 +36,7 @@ JWT to check.
 
 ```bash
 supabase secrets set IP_SALT="$(openssl rand -hex 32)"
-supabase secrets set ALLOWED_ORIGINS="https://twofold.app,https://www.twofold.app"
+supabase secrets set ALLOWED_ORIGINS="https://twofoldfinance.com,https://www.twofoldfinance.com"
 supabase secrets set BUTTONDOWN_API_KEY="..."   # optional, see below
 ```
 
@@ -48,7 +48,7 @@ you reset everyone's window.
 
 ## 4. Point the page at it
 
-In `twofold-coming-soon.html`, set:
+In `site/index.html`, set:
 
 ```js
 var WAITLIST_ENDPOINT = 'https://<project>.supabase.co/functions/v1/waitlist';
@@ -72,7 +72,7 @@ Your provider gives you the exact values. The shapes are:
 |---|---|---|
 | TXT | `@` | SPF, e.g. `v=spf1 include:<provider> ~all` |
 | CNAME | provider supplied | DKIM signing keys, usually two |
-| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:you@twofold.app` |
+| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:you@twofoldfinance.com` |
 
 Start DMARC at `p=none` so you collect reports without bouncing your own mail. Move
 to `quarantine` then `reject` once the reports come back clean, typically a few weeks.

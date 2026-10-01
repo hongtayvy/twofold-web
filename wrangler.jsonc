@@ -1,0 +1,10 @@
+// Cloudflare deploy config. The site is static files, so this is an assets-only
+// Worker: no server code, Cloudflare serves whatever is in ./site.
+// Deployed by Cloudflare's Git integration on every push to master (`npx wrangler deploy`).
+{
+  "name": "twofold-web",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./site"
+  }
+}

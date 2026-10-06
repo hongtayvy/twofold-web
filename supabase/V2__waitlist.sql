@@ -1,9 +1,7 @@
 -- Pre-launch waitlist for the marketing site (twofold-web).
 --
--- WHERE THIS BELONGS: copy into twofold-business at
---   src/main/resources/db/migration/V2__waitlist.sql
--- so the schema stays tracked by Flyway. You share one Supabase Postgres across
--- app / api / web, so creating this by hand in the dashboard would be silent drift.
+-- This is the canonical copy: Flyway owns the schema for the shared Supabase Postgres.
+-- twofold-web/supabase/V2__waitlist.sql is a reference copy of this file. Keep them identical.
 --
 -- ACCESS MODEL
 -- Writes arrive through the `waitlist` Edge Function, which holds the service role
@@ -48,8 +46,8 @@ alter table public.waitlist_attempts enable row level security;
 -- Any policy from an earlier draft that allowed the browser to write directly.
 drop policy if exists waitlist_anon_insert on public.waitlist;
 
--- Housekeeping: the attempts ledger only needs a rolling window. Call from the
--- Edge Function or a scheduled job; either way it stays small on its own.
+-- Housekeeping: the attempts ledger only needs a rolling window. Called by the Edge
+-- Function so it stays small on its own.
 create or replace function public.prune_waitlist_attempts()
 returns void
 language sql
@@ -57,4 +55,24 @@ security definer
 set search_path = public
 as $$
     delete from public.waitlist_attempts where created_at < now() - interval '24 hours';
+$$;
+
+-- Supabase exposes every function in `public` over its REST API, and new functions are
+-- executable by anon by default. This one is security definer, so left alone anyone
+-- holding the public anon key could wipe the rate limit ledger. Only the Edge Function
+-- (service_role) may call it. Guarded so the migration also runs on a plain Postgres.
+do $$
+declare
+    r text;
+begin
+    revoke all on function public.prune_waitlist_attempts() from public;
+    foreach r in array array['anon', 'authenticated'] loop
+        if exists (select 1 from pg_roles where rolname = r) then
+            execute format('revoke all on function public.prune_waitlist_attempts() from %I', r);
+        end if;
+    end loop;
+    if exists (select 1 from pg_roles where rolname = 'service_role') then
+        grant execute on function public.prune_waitlist_attempts() to service_role;
+    end if;
+end
 $$;

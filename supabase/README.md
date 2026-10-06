@@ -17,11 +17,16 @@ side honeypot check possible.
 
 `V2__waitlist.sql` creates `waitlist` and `waitlist_attempts`.
 
-Copy it into **twofold-business** at `src/main/resources/db/migration/V2__waitlist.sql`
-rather than running it in the Supabase dashboard. All three repos share one Postgres
-and Flyway owns that schema; creating tables by hand is drift you will trip over later.
+It already lives in **twofold-business** at `src/main/resources/db/migration/V2__waitlist.sql`,
+and Flyway applies it the next time the API deploys to Render. All three repos share one Postgres
+and Flyway owns that schema; creating tables by hand in the Supabase dashboard is drift you will
+trip over later. The copy in this folder is a reference. If you change one, change the other.
 
-Both tables have RLS enabled and **no policies at all**, so anon is denied by default.
+Both tables have RLS enabled and **no policies at all**, so anon is denied by default. The same
+migration also stops anon from calling `prune_waitlist_attempts()` through Supabase's REST API.
+
+The Edge Function needs these tables to exist, so deploy the API (and let it migrate) before
+step 4.
 
 ## 2. Deploy the function
 

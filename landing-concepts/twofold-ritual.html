@@ -587,13 +587,18 @@
   <div class="max-w-md mx-auto reveal">
     <h2 class="font-display font-bold text-3xl md:text-[2.5rem] tracking-tight text-center leading-[1.1]">One price, two of you.</h2>
     <div class="mt-10 rounded-[20px] bg-white border border-line p-8 md:p-10">
-      <div class="flex items-end gap-2">
-        <span class="font-num num font-medium text-5xl tracking-tight">$12</span>
-        <span class="text-mute pb-1.5">your first year</span>
+      <!-- PRICE FRAMING. "$1 a month" reads as trivially small; "$12" reads as a purchase,
+           so the monthly figure leads. The struck-through regular rate anchors the deal
+           against what it renews at, and the billing line says plainly that it is $12 up
+           front for the year (one charge, so card fees don't eat a $1 payment).
+           Renewal sits right under the price, never in fine print. -->
+      <span class="inline-flex items-center rounded-full bg-jade-50 text-jade-700 text-xs font-medium px-3 py-1">First-year price</span>
+      <div class="mt-4 flex items-end gap-2 flex-wrap">
+        <span class="font-num num font-medium text-5xl tracking-tight">$1</span>
+        <span class="text-mute pb-1.5">a month</span>
+        <span class="font-num num text-mute line-through decoration-field pb-1.5 ml-1" aria-label="regularly $4.17 a month">$4.17</span>
       </div>
-      <!-- Renewal stated right under the price, not in fine print. A finance app that
-           hides what it renews at loses the trust it is asking people for. -->
-      <p class="mt-2 text-sm text-ink">Then <span class="font-num num font-medium">$50</span> a year, for both of you.</p>
+      <p class="mt-2 text-sm text-ink text-balance">Billed <span class="font-num num font-medium">$12</span> for your first year. Then <span class="font-num num font-medium">$50</span> a year, for both of you.</p>
       <ul class="mt-8 space-y-3.5 text-sm">
         <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Both partners, one subscription</li>
         <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Unlimited accounts and goals</li>
@@ -601,7 +606,7 @@
         <li class="flex items-center gap-3"><i class="ph ph-check text-jade-600"></i>Leave whenever, data comes with you</li>
       </ul>
       <a href="#start" class="btn-press mt-9 w-full inline-flex justify-center rounded-full bg-jade-600 text-white font-medium px-8 py-4 hover:bg-jade-700 transition-colors">Start together</a>
-      <!-- 14 day trial that converts to the $12 year on its own. The reminder goes out before
+      <!-- 14 day trial that converts to the $12 first year ($1 a month) on its own. The reminder goes out before
            the charge, not after: a surprise charge is how a finance app earns chargebacks. -->
       <p class="mt-4 text-center text-xs text-mute text-balance">Free for 14 days. We'll email you before we charge.</p>
     </div>

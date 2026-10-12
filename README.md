@@ -10,7 +10,7 @@ landing page is built and waiting in `landing-concepts/` until launch.
 | Repo | What | Hosted on |
 |---|---|---|
 | `twofold-web` (this repo) | Marketing site + waitlist | Cloudflare, `twofoldfinance.com` |
-| `twofold-app` | The couples app (React SPA) | Cloudflare, `twofoldfinance.app` |
+| `twofold-app` | The couples app (React SPA) | Cloudflare, `app.twofoldfinance.com` |
 | `twofold-business` | The API | Render |
 
 All three share one Supabase project. The waitlist tables are created by the API repo's Flyway

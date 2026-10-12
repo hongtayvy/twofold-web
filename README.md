@@ -43,7 +43,7 @@ npx wrangler dev
 ## Deploy
 
 Hosted on Cloudflare (Workers, static assets only). Cloudflare watches this repo and
-redeploys on every push to `master`, so shipping a change is: merge into `master`.
+redeploys on every push to `main`, so shipping a change is: merge into `main`.
 
 ## Before the waitlist goes live
 
@@ -52,6 +52,6 @@ The form shows an error until it is connected. In order:
 1. Deploy `twofold-business` so Flyway creates the waitlist tables.
 2. Deploy the Supabase function and set its secrets.
 3. Set `WAITLIST_ENDPOINT` in `site/index.html` to
-   `https://bsbcqmzchyfvnvcebnxh.supabase.co/functions/v1/waitlist`, then merge to `master`.
+   `https://bsbcqmzchyfvnvcebnxh.supabase.co/functions/v1/waitlist`, then merge to `main`.
 
 Steps are in `supabase/README.md`.
